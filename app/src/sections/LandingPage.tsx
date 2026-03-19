@@ -581,7 +581,7 @@ export function LandingPage() {
               {/* Video Aspect Ratio Container */}
               <div className="relative aspect-video">
                 <iframe
-                  src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
+                  src="https://www.youtube.com/embed/L3Z93ev5jzY?rel=0&modestbranding=1"
                   title="PayPill Dashboard Demo"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
