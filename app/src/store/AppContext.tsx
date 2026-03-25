@@ -1,9 +1,20 @@
 import { createContext, useContext, useReducer, type ReactNode } from 'react';
-import type { AppState, UserProfile, HealthCondition, Medication, Insurance, AIRecommendation } from '@/types';
+import type { 
+  AppState, 
+  UserProfile, 
+  HealthCondition, 
+  Medication, 
+  Insurance, 
+  AIRecommendation
+} from '@/types';
 import {
   mockProviders,
+  mockPharmacies,
   generatePersonalizedRecommendations,
-  generateRecommendationsFromHealthProfile
+  generateRecommendationsFromHealthProfile,
+  generateAIHealthInsights,
+  generateRiskAssessment,
+  generateFollowUpTasks
 } from '@/data/mockData';
 
 // Health Profile Data Type
@@ -64,6 +75,18 @@ type Action =
   | { type: 'SET_QUALIFICATION_ANSWERS'; payload: QualificationAnswers }
   | { type: 'SET_HEALTH_PROFILE'; payload: HealthProfileData }
   | { type: 'SET_AUTH_STATE'; payload: { isAuthenticated: boolean; user: UserProfile | null } }
+  | { type: 'ADD_MESSAGE'; payload: any }
+  | { type: 'MARK_MESSAGE_READ'; payload: string }
+  | { type: 'ADD_NOTIFICATION'; payload: any }
+  | { type: 'MARK_NOTIFICATION_READ'; payload: string }
+  | { type: 'BOOK_APPOINTMENT'; payload: any }
+  | { type: 'CANCEL_APPOINTMENT'; payload: string }
+  | { type: 'PLACE_MEDICATION_ORDER'; payload: any }
+  | { type: 'UPDATE_ORDER_STATUS'; payload: { orderId: string; status: string } }
+  | { type: 'REQUEST_REFILL'; payload: { medicationId: string; pharmacyId: string } }
+  | { type: 'SET_HEALTH_INSIGHTS'; payload: any[] }
+  | { type: 'SET_RISK_ASSESSMENT'; payload: any }
+  | { type: 'COMPLETE_TASK'; payload: string }
   | { type: 'LOGOUT' }
   | { type: 'RESET_STATE' };
 
@@ -87,13 +110,25 @@ const initialState: AppState = {
   allergies: [],
   insurance: null,
   providers: mockProviders,
+  pharmacies: mockPharmacies,
   emergencyContacts: [],
   recommendations: [],
+  healthInsights: [],
+  riskAssessment: null,
+  followUpTasks: [],
   timeline: [],
   auditLogs: [],
   isAuthenticated: false,
   qualificationAnswers: null,
-  healthProfile: null
+  healthProfile: null,
+  // New features
+  messages: [],
+  notifications: [],
+  appointments: [],
+  medicationOrders: [],
+  refillRequests: [],
+  unreadMessageCount: 0,
+  unreadNotificationCount: 0
 };
 
 function appReducer(state: AppState, action: Action): AppState {
@@ -126,7 +161,6 @@ function appReducer(state: AppState, action: Action): AppState {
     case 'SET_RECOMMENDATIONS':
       return { ...state, recommendations: action.payload };
     case 'SET_QUALIFICATION_ANSWERS':
-      // Generate personalized recommendations based on answers
       const personalizedRecs = generatePersonalizedRecommendations(action.payload);
       return { 
         ...state, 
@@ -134,12 +168,17 @@ function appReducer(state: AppState, action: Action): AppState {
         recommendations: personalizedRecs
       };
     case 'SET_HEALTH_PROFILE':
-      // Generate AI recommendations based on health profile
       const healthProfileRecs = generateRecommendationsFromHealthProfile(action.payload);
+      const healthInsights = generateAIHealthInsights(action.payload);
+      const riskAssessment = generateRiskAssessment(action.payload);
+      const followUpTasks = generateFollowUpTasks(action.payload);
       return {
         ...state,
         healthProfile: action.payload,
-        recommendations: [...state.recommendations, ...healthProfileRecs]
+        recommendations: [...state.recommendations, ...healthProfileRecs],
+        healthInsights,
+        riskAssessment,
+        followUpTasks
       };
     case 'SET_AUTH_STATE':
       return { 
@@ -147,10 +186,89 @@ function appReducer(state: AppState, action: Action): AppState {
         isAuthenticated: action.payload.isAuthenticated,
         user: action.payload.user
       };
+    // Messages
+    case 'ADD_MESSAGE':
+      return {
+        ...state,
+        messages: [action.payload, ...state.messages],
+        unreadMessageCount: state.unreadMessageCount + 1
+      };
+    case 'MARK_MESSAGE_READ':
+      return {
+        ...state,
+        messages: state.messages.map(m =>
+          m.id === action.payload ? { ...m, read: true } : m
+        ),
+        unreadMessageCount: Math.max(0, state.unreadMessageCount - 1)
+      };
+    // Notifications
+    case 'ADD_NOTIFICATION':
+      return {
+        ...state,
+        notifications: [action.payload, ...state.notifications],
+        unreadNotificationCount: state.unreadNotificationCount + 1
+      };
+    case 'MARK_NOTIFICATION_READ':
+      return {
+        ...state,
+        notifications: state.notifications.map(n =>
+          n.id === action.payload ? { ...n, read: true } : n
+        ),
+        unreadNotificationCount: Math.max(0, state.unreadNotificationCount - 1)
+      };
+    // Appointments
+    case 'BOOK_APPOINTMENT':
+      return {
+        ...state,
+        appointments: [...state.appointments, action.payload]
+      };
+    case 'CANCEL_APPOINTMENT':
+      return {
+        ...state,
+        appointments: state.appointments.map(a =>
+          a.id === action.payload ? { ...a, status: 'cancelled' as const } : a
+        )
+      };
+    // Medication Orders
+    case 'PLACE_MEDICATION_ORDER':
+      return {
+        ...state,
+        medicationOrders: [action.payload, ...state.medicationOrders]
+      };
+    case 'UPDATE_ORDER_STATUS':
+      return {
+        ...state,
+        medicationOrders: state.medicationOrders.map(o =>
+          o.id === action.payload.orderId ? { ...o, status: action.payload.status as any } : o
+        )
+      };
+    case 'REQUEST_REFILL':
+      return {
+        ...state,
+        refillRequests: [...state.refillRequests, {
+          id: `refill_${Date.now()}`,
+          medicationId: action.payload.medicationId,
+          pharmacyId: action.payload.pharmacyId,
+          status: 'pending' as const,
+          requestedAt: new Date().toISOString()
+        }]
+      };
+    case 'SET_HEALTH_INSIGHTS':
+      return { ...state, healthInsights: action.payload };
+    case 'SET_RISK_ASSESSMENT':
+      return { ...state, riskAssessment: action.payload };
+    case 'COMPLETE_TASK':
+      return {
+        ...state,
+        followUpTasks: state.followUpTasks.map(t =>
+          t.id === action.payload ? { ...t, completed: true, completedAt: new Date().toISOString() } : t
+        )
+      };
     case 'LOGOUT':
       return {
         ...initialState,
-        providers: mockProviders // Keep providers
+        providers: mockProviders,
+        pharmacies: mockPharmacies
       };
     case 'RESET_STATE':
       return initialState;

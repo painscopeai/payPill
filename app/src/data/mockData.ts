@@ -6,8 +6,16 @@ import type {
   Medication,
   Insurance,
   HealthcareProvider,
+  Pharmacy,
   EmergencyContact,
   AIRecommendation,
+  Message,
+  Notification,
+  Appointment,
+  MedicationOrder,
+  HealthInsight,
+  RiskAssessment,
+  FollowUpTask,
   TimelineEvent,
   PrivacyAuditLog,
   MedicationPricing,
@@ -697,6 +705,421 @@ export function generatePersonalizedRecommendations(answers: QualificationAnswer
   });
 
   return recommendations;
+}
+
+// Mock Pharmacies
+export const mockPharmacies: Pharmacy[] = [
+  {
+    id: 'pharm_001',
+    name: 'QuickCare Pharmacy',
+    address: '100 Main Street, Austin, TX 78701',
+    phone: '(512) 555-0500',
+    distance: 0.5,
+    hours: 'Open 24 hours',
+    services: ['Prescription filling', 'Vaccinations', 'Health screenings', 'Delivery'],
+    rating: 4.7,
+    isOpen: true,
+    deliveryAvailable: true,
+    insuranceAccepted: ['Blue Cross Blue Shield', 'Aetna', 'Cigna', 'UnitedHealthcare', 'Humana']
+  },
+  {
+    id: 'pharm_002',
+    name: 'Walgreens',
+    address: '2500 Guadalupe St, Austin, TX 78705',
+    phone: '(512) 555-0600',
+    distance: 1.2,
+    hours: '7AM - 10PM',
+    services: ['Prescription filling', 'Photo', 'Vaccinations'],
+    rating: 4.3,
+    isOpen: true,
+    deliveryAvailable: false,
+    insuranceAccepted: ['Blue Cross Blue Shield', 'Aetna', 'UnitedHealthcare']
+  },
+  {
+    id: 'pharm_003',
+    name: 'CVS Pharmacy',
+    address: '1800 Lamar Blvd, Austin, TX 78701',
+    phone: '(512) 555-0700',
+    distance: 2.0,
+    hours: '8AM - 9PM',
+    services: ['Prescription filling', 'MinuteClinic', 'Vaccinations'],
+    rating: 4.1,
+    isOpen: true,
+    deliveryAvailable: true,
+    insuranceAccepted: ['Blue Cross Blue Shield', 'Cigna', 'Humana']
+  },
+  {
+    id: 'pharm_004',
+    name: 'Costco Pharmacy',
+    address: '9900 S Interstate 35, Austin, TX 78748',
+    phone: '(512) 555-0800',
+    distance: 5.5,
+    hours: '10AM - 8PM',
+    services: ['Prescription filling', 'Vaccinations', 'Health screenings'],
+    rating: 4.8,
+    isOpen: false,
+    deliveryAvailable: false,
+    insuranceAccepted: ['Blue Cross Blue Shield', 'Aetna', 'Cigna', 'UnitedHealthcare', 'Humana']
+  }
+];
+
+// Mock Messages
+export const mockMessages: Message[] = [
+  {
+    id: 'msg_001',
+    sender: { type: 'ai', name: 'PayPill AI' },
+    subject: 'Smart Contract renewal is now due',
+    content: 'Your insurance smart contract renewal is due. Please review and approve the updated terms to continue receiving benefits.',
+    timestamp: '2024-03-15T09:30:00Z',
+    read: false,
+    category: 'health',
+    actions: [{ label: 'Review Contract', action: 'review_contract' }]
+  },
+  {
+    id: 'msg_002',
+    sender: { type: 'doctor', name: 'Dr. Emily Rodriguez' },
+    subject: 'Proof of Performance reward has occurred',
+    content: 'Congratulations! Your consistent medication adherence has earned you a PPLL token reward. Keep up the great work!',
+    timestamp: '2024-03-14T14:15:00Z',
+    read: false,
+    category: 'health',
+    actions: [{ label: 'View Reward', action: 'view_reward' }]
+  },
+  {
+    id: 'msg_003',
+    sender: { type: 'system', name: 'PayPill System' },
+    subject: 'Disease State Staging Updates',
+    content: 'Your health profile has been updated with new staging information based on your recent lab results.',
+    timestamp: '2024-03-13T11:00:00Z',
+    read: true,
+    category: 'system',
+    actions: [{ label: 'View Updates', action: 'view_updates' }]
+  },
+  {
+    id: 'msg_004',
+    sender: { type: 'pharmacy', name: 'QuickCare Pharmacy' },
+    subject: 'Your prescription is ready for pickup',
+    content: 'Your Metformin prescription is ready. You can pick it up anytime during business hours.',
+    timestamp: '2024-03-12T16:45:00Z',
+    read: true,
+    category: 'medication',
+    actions: [{ label: 'View Details', action: 'view_prescription' }]
+  }
+];
+
+// Mock Notifications
+export const mockNotifications: Notification[] = [
+  {
+    id: 'notif_001',
+    type: 'reminder',
+    title: 'Medication Reminder',
+    message: 'Time to take your Lisinopril (10mg)',
+    timestamp: '2024-03-15T08:00:00Z',
+    read: false,
+    priority: 'high',
+    actionText: 'Mark Taken',
+    actionLink: '/medications'
+  },
+  {
+    id: 'notif_002',
+    type: 'appointment',
+    title: 'Upcoming Appointment',
+    message: 'Physical therapy with City Physio tomorrow at 2:00 PM',
+    timestamp: '2024-03-15T07:00:00Z',
+    read: false,
+    priority: 'medium',
+    actionText: 'View Details',
+    actionLink: '/appointments'
+  },
+  {
+    id: 'notif_003',
+    type: 'refill',
+    title: 'Refill Available',
+    message: 'Your Metformin prescription can be refilled now',
+    timestamp: '2024-03-14T10:30:00Z',
+    read: true,
+    priority: 'medium',
+    actionText: 'Request Refill',
+    actionLink: '/medications'
+  },
+  {
+    id: 'notif_004',
+    type: 'insight',
+    title: 'Health Insight',
+    message: 'Your blood pressure readings have improved 15% this month!',
+    timestamp: '2024-03-13T09:00:00Z',
+    read: true,
+    priority: 'low',
+    actionText: 'View Trends',
+    actionLink: '/dashboard'
+  }
+];
+
+// Mock Appointments
+export const mockAppointments: Appointment[] = [
+  {
+    id: 'apt_001',
+    providerId: 'prov_003',
+    providerName: 'City Physio',
+    providerSpecialty: 'Physical Therapy',
+    date: '2024-03-20',
+    time: '14:00',
+    duration: 60,
+    type: 'in-person',
+    status: 'scheduled',
+    reason: 'Chronic back pain treatment',
+    location: '789 Recovery Road, Austin, TX 78703',
+    reminderSent: false
+  },
+  {
+    id: 'apt_002',
+    providerId: 'prov_001',
+    providerName: 'Dr. Emily Rodriguez',
+    providerSpecialty: 'Internal Medicine',
+    date: '2024-03-25',
+    time: '10:30',
+    duration: 30,
+    type: 'telehealth',
+    status: 'confirmed',
+    reason: 'Diabetes follow-up',
+    reminderSent: true
+  },
+  {
+    id: 'apt_003',
+    providerId: 'prov_004',
+    providerName: 'Dr. Sarah Williams',
+    providerSpecialty: 'Endocrinology',
+    date: '2024-04-05',
+    time: '11:00',
+    duration: 45,
+    type: 'in-person',
+    status: 'scheduled',
+    reason: 'HbA1c review',
+    location: '321 Hormone Lane, Austin, TX 78701',
+    reminderSent: false
+  }
+];
+
+// Mock Medication Orders
+export const mockMedicationOrders: MedicationOrder[] = [
+  {
+    id: 'order_001',
+    medicationId: 'med_001',
+    medicationName: 'Metformin 500mg',
+    pharmacyId: 'pharm_001',
+    pharmacyName: 'QuickCare Pharmacy',
+    quantity: 90,
+    price: 18.50,
+    status: 'ready',
+    orderDate: '2024-03-14T10:00:00Z',
+    deliveryType: 'pickup'
+  },
+  {
+    id: 'order_002',
+    medicationId: 'med_002',
+    medicationName: 'Lisinopril 10mg',
+    pharmacyId: 'pharm_002',
+    pharmacyName: 'Walgreens',
+    quantity: 30,
+    price: 12.00,
+    status: 'delivered',
+    orderDate: '2024-03-10T14:30:00Z',
+    deliveryType: 'delivery',
+    trackingNumber: 'TRACK123456'
+  }
+];
+
+// Generate AI Health Insights
+export function generateAIHealthInsights(profile: HealthProfileData): HealthInsight[] {
+  const insights: HealthInsight[] = [];
+  const now = new Date().toISOString();
+
+  // Risk-based insights
+  if (profile.hasConditions) {
+    insights.push({
+      id: `insight_risk_${Date.now()}`,
+      category: 'risk',
+      title: 'Condition Management',
+      description: `Your ${profile.conditions.length} health condition(s) require regular monitoring.`,
+      metric: 'Conditions',
+      value: profile.conditions.length.toString(),
+      trend: 'stable',
+      severity: 'medium',
+      actionable: true,
+      actionText: 'Schedule Follow-up',
+      createdAt: now
+    });
+  }
+
+  // Achievement insights
+  if (profile.exerciseFrequency === 'Daily' || profile.exerciseFrequency === '3-5 times per week') {
+    insights.push({
+      id: `insight_achievement_${Date.now()}`,
+      category: 'achievement',
+      title: 'Great Exercise Habits!',
+      description: 'Your regular exercise routine is improving your cardiovascular health.',
+      metric: 'Exercise',
+      value: profile.exerciseFrequency,
+      trend: 'improving',
+      actionable: false,
+      createdAt: now
+    });
+  }
+
+  // Opportunity insights
+  if (profile.sleepHours === 'Less than 5 hours') {
+    insights.push({
+      id: `insight_opportunity_${Date.now()}`,
+      category: 'opportunity',
+      title: 'Sleep Improvement Opportunity',
+      description: 'Increasing your sleep to 7-8 hours could improve your overall health.',
+      metric: 'Sleep',
+      value: profile.sleepHours,
+      trend: 'declining',
+      severity: 'medium',
+      actionable: true,
+      actionText: 'Sleep Tips',
+      createdAt: now
+    });
+  }
+
+  // Trend insights
+  insights.push({
+    id: `insight_trend_${Date.now()}`,
+    category: 'trend',
+    title: 'Health Profile Complete',
+    description: 'Your comprehensive health profile enables personalized AI recommendations.',
+    trend: 'new',
+    actionable: false,
+    createdAt: now
+  });
+
+  return insights;
+}
+
+// Generate Risk Assessment
+export function generateRiskAssessment(profile: HealthProfileData): RiskAssessment {
+  const now = new Date().toISOString();
+  const nextAssessment = new Date();
+  nextAssessment.setMonth(nextAssessment.getMonth() + 3);
+
+  // Calculate overall risk based on profile data
+  let overallScore = 30; // Base score
+  const factors: string[] = [];
+
+  if (profile.hasConditions) {
+    overallScore += profile.conditions.length * 10;
+    factors.push(...profile.conditions);
+  }
+
+  if (profile.smokingStatus === 'Daily smoker') {
+    overallScore += 20;
+    factors.push('Smoking');
+  }
+
+  if (profile.stressLevel.includes('High') || profile.stressLevel.includes('Very high')) {
+    overallScore += 10;
+    factors.push('High stress');
+  }
+
+  if (profile.sleepHours === 'Less than 5 hours') {
+    overallScore += 10;
+    factors.push('Insufficient sleep');
+  }
+
+  if (profile.exerciseFrequency === 'Never' || profile.exerciseFrequency === 'Rarely') {
+    overallScore += 10;
+    factors.push('Sedentary lifestyle');
+  }
+
+  // Cap at 100
+  overallScore = Math.min(overallScore, 100);
+
+  const overallRisk = overallScore < 40 ? 'low' : overallScore < 70 ? 'moderate' : 'high';
+
+  return {
+    overallRisk,
+    overallScore,
+    categories: {
+      cardiovascular: {
+        risk: overallScore > 60 ? 'high' : overallScore > 40 ? 'moderate' : 'low',
+        score: Math.min(overallScore + 10, 100),
+        factors: factors.filter(f => ['Hypertension', 'High cholesterol', 'Smoking'].some(hf => f.includes(hf)))
+      },
+      diabetes: {
+        risk: profile.conditions.some(c => c.toLowerCase().includes('diabetes')) ? 'moderate' : 'low',
+        score: profile.conditions.some(c => c.toLowerCase().includes('diabetes')) ? 55 : 25,
+        factors: factors.filter(f => f.toLowerCase().includes('diabetes'))
+      },
+      mentalHealth: {
+        risk: profile.stressLevel.includes('High') ? 'moderate' : 'low',
+        score: profile.stressLevel.includes('High') ? 50 : 30,
+        factors: factors.filter(f => f.includes('stress') || f.includes('anxiety') || f.includes('depression'))
+      },
+      lifestyle: {
+        risk: profile.exerciseFrequency === 'Never' ? 'moderate' : 'low',
+        score: profile.exerciseFrequency === 'Never' ? 55 : 35,
+        factors: factors.filter(f => ['Sedentary lifestyle', 'Insufficient sleep', 'Smoking'].includes(f))
+      }
+    },
+    lastUpdated: now,
+    nextAssessment: nextAssessment.toISOString()
+  };
+}
+
+// Generate Follow-up Tasks
+export function generateFollowUpTasks(profile: HealthProfileData): FollowUpTask[] {
+  const tasks: FollowUpTask[] = [];
+
+  // Checkup task
+  if (profile.lastCheckup.includes('More than') || profile.lastCheckup === 'Never') {
+    tasks.push({
+      id: `task_checkup_${Date.now()}`,
+      title: 'Schedule Annual Checkup',
+      description: 'It has been a while since your last comprehensive health checkup.',
+      type: 'appointment',
+      priority: 'high',
+      completed: false
+    });
+  }
+
+  // Lab work task
+  if (profile.hasConditions) {
+    tasks.push({
+      id: `task_lab_${Date.now()}`,
+      title: 'Complete Lab Work',
+      description: 'Your conditions require regular monitoring through lab tests.',
+      type: 'lab',
+      priority: 'medium',
+      completed: false
+    });
+  }
+
+  // Medication review task
+  if (profile.takesMedications) {
+    tasks.push({
+      id: `task_med_review_${Date.now()}`,
+      title: 'Review Medications with Doctor',
+      description: 'Ensure all your medications are still appropriate and effective.',
+      type: 'medication',
+      priority: 'medium',
+      completed: false
+    });
+  }
+
+  // Lifestyle task
+  if (profile.exerciseFrequency === 'Never' || profile.exerciseFrequency === 'Rarely') {
+    tasks.push({
+      id: `task_exercise_${Date.now()}`,
+      title: 'Start Exercise Routine',
+      description: 'Aim for 20-30 minutes of moderate activity daily.',
+      type: 'lifestyle',
+      priority: 'medium',
+      completed: false
+    });
+  }
+
+  return tasks;
 }
 
 // Generate recommendations based on comprehensive health profile

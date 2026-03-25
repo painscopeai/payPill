@@ -172,7 +172,7 @@ function AuthModal({
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:border-mfp-blue-500 focus:ring-2 focus:ring-mfp-blue-200/50 outline-none transition-all"
+                className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:border-pp-teal focus:ring-2 focus:ring-pp-teal/20 outline-none transition-all"
                 placeholder="John Doe"
                 required
               />
@@ -204,7 +204,7 @@ function AuthModal({
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-mfp-blue-500 to-mfp-blue-600 hover:from-mfp-blue-600 hover:to-mfp-blue-700 text-white rounded-xl py-4 font-semibold transition-all disabled:opacity-50 flex items-center justify-center shadow-lg shadow-blue-500/25"
+            className="w-full bg-pp-teal hover:bg-pp-teal-600 text-white rounded-xl py-4 font-semibold transition-all disabled:opacity-50 flex items-center justify-center shadow-lg"
           >
             {loading ? (
               <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -267,21 +267,21 @@ export function LandingPage() {
       title: 'Create Profile', 
       desc: 'Sign up and add your basic health information.', 
       image: '/assets/step-profile.png',
-      color: 'bg-mfp-blue-500' 
+      color: 'bg-pp-teal' 
     },
     { 
       step: '2', 
       title: 'Answer Questions', 
       desc: 'Tell us about your insurance, medications, and health needs.', 
       image: '/assets/step-questions.png',
-      color: 'bg-mfp-yellow-500' 
+      color: 'bg-pp-sage' 
     },
     { 
       step: '3', 
       title: 'Get AI Insights', 
       desc: 'Receive personalized recommendations to save money and find care.', 
       image: '/assets/step-insights.png',
-      color: 'bg-green-500' 
+      color: 'bg-pp-purple' 
     },
   ];
 
@@ -301,8 +301,17 @@ export function LandingPage() {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
+              <button onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                About
+              </button>
               <button onClick={scrollToFeatures} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                 Features
+              </button>
+              <button onClick={() => document.getElementById('team')?.scrollIntoView({ behavior: 'smooth' })} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                Team
+              </button>
+              <button onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                Contact
               </button>
               <button onClick={handleDashboardClick} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                 Dashboard
@@ -315,7 +324,7 @@ export function LandingPage() {
               {state.isAuthenticated ? (
                 <Button
                   onClick={() => dispatch({ type: 'SET_VIEW', payload: 'dashboard' })}
-                  className="bg-gradient-to-r from-mfp-blue-500 to-mfp-blue-600 hover:from-mfp-blue-600 hover:to-mfp-blue-700 text-white rounded-full px-6 py-2.5 text-sm font-semibold shadow-lg shadow-blue-500/25"
+                  className="bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full px-6 py-2.5 text-sm font-semibold shadow-lg"
                 >
                   My Dashboard
                 </Button>
@@ -329,7 +338,7 @@ export function LandingPage() {
                   </button>
                   <Button
                     onClick={() => setShowAuthModal('signup')}
-                    className="bg-gradient-to-r from-mfp-blue-500 to-mfp-blue-600 hover:from-mfp-blue-600 hover:to-mfp-blue-700 text-white rounded-full px-6 py-2.5 text-sm font-semibold shadow-lg shadow-blue-500/25"
+                    className="bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full px-6 py-2.5 text-sm font-semibold shadow-lg"
                   >
                     Sign Up
                   </Button>
@@ -360,10 +369,28 @@ export function LandingPage() {
           <div className="md:hidden bg-background border-t border-border animate-slide-down">
             <div className="px-4 py-4 space-y-3">
               <button 
+                onClick={() => { document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
+                className="block w-full text-left px-4 py-3 text-base font-medium text-foreground hover:bg-secondary rounded-xl transition-colors"
+              >
+                About
+              </button>
+              <button 
                 onClick={() => { scrollToFeatures(); setMobileMenuOpen(false); }}
                 className="block w-full text-left px-4 py-3 text-base font-medium text-foreground hover:bg-secondary rounded-xl transition-colors"
               >
                 Features
+              </button>
+              <button 
+                onClick={() => { document.getElementById('team')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
+                className="block w-full text-left px-4 py-3 text-base font-medium text-foreground hover:bg-secondary rounded-xl transition-colors"
+              >
+                Team
+              </button>
+              <button 
+                onClick={() => { document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
+                className="block w-full text-left px-4 py-3 text-base font-medium text-foreground hover:bg-secondary rounded-xl transition-colors"
+              >
+                Contact
               </button>
               <button 
                 onClick={() => { handleDashboardClick(); setMobileMenuOpen(false); }}
@@ -382,7 +409,7 @@ export function LandingPage() {
                     </button>
                     <Button
                       onClick={() => { setShowAuthModal('signup'); setMobileMenuOpen(false); }}
-                      className="w-full bg-gradient-to-r from-mfp-blue-500 to-mfp-blue-600 hover:from-mfp-blue-600 hover:to-mfp-blue-700 text-white rounded-full py-3 text-base font-semibold shadow-lg shadow-blue-500/25"
+                      className="w-full bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full py-3 text-base font-semibold shadow-lg"
                     >
                       Sign Up
                     </Button>
@@ -390,7 +417,7 @@ export function LandingPage() {
                 ) : (
                   <Button
                     onClick={() => { dispatch({ type: 'SET_VIEW', payload: 'dashboard' }); setMobileMenuOpen(false); }}
-                    className="w-full bg-gradient-to-r from-mfp-blue-500 to-mfp-blue-600 hover:from-mfp-blue-600 hover:to-mfp-blue-700 text-white rounded-full py-3 text-base font-semibold shadow-lg shadow-blue-500/25"
+                    className="w-full bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full py-3 text-base font-semibold shadow-lg"
                   >
                     My Dashboard
                   </Button>
@@ -402,103 +429,67 @@ export function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-28 pb-16 lg:pt-36 lg:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
-        {/* Background Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,102,238,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,102,238,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+      <section className="pt-28 pb-16 lg:pt-36 lg:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden relative bg-pp-periwinkle">
+        {/* Healthcare Icons Pattern Background */}
+        <div className="absolute inset-0 opacity-10">
+          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <pattern id="health-icons" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                <text x="2" y="15" fontSize="12" fill="hsl(174,35%,35%)" opacity="0.3">+</text>
+                <text x="12" y="8" fontSize="10" fill="hsl(174,35%,35%)" opacity="0.3">♥</text>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#health-icons)" />
+          </svg>
+        </div>
         
         <div className="max-w-7xl mx-auto relative">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             {/* Left Content */}
             <div className="space-y-6 animate-fade-in">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30 rounded-full border border-blue-200 dark:border-blue-800">
-                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                <span className="text-sm font-medium text-mfp-blue-500">AI-Powered Health Compass</span>
-              </div>
-              
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-foreground leading-[1.1]">
-                Save on Healthcare.<br />
-                <span className="bg-gradient-to-r from-mfp-blue-500 to-cyan-500 bg-clip-text text-transparent">Stay in Control.</span>
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black leading-[1.05] tracking-tight">
+                <span className="text-pp-teal">CHANGING</span><br />
+                <span className="text-pp-teal">HEALTHCARE</span><br />
+                <span className="text-white drop-shadow-sm">FOREVER</span>
               </h1>
               
-              <p className="text-lg text-muted-foreground max-w-md">
-                Connect your insurance, find the best prices, and own your health data—all in one place.
+              <p className="text-lg sm:text-xl text-pp-teal italic max-w-lg leading-relaxed">
+                A new digital healthcare eco-system powered by our propriety Blockchain, Artificial Intelligence technologies
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   onClick={handleStartJourney}
                   size="lg"
-                  className="bg-gradient-to-r from-mfp-blue-500 to-mfp-blue-600 hover:from-mfp-blue-600 hover:to-mfp-blue-700 text-white rounded-full px-8 py-6 text-lg font-semibold shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/30 transition-all"
+                  className="bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full px-8 py-6 text-lg font-semibold shadow-lg transition-all"
                 >
-                  Get Started Free
-                  <ChevronRightIcon size={20} className="ml-2" />
+                  Download Whitepaper
                 </Button>
-              </div>
-              
-              <div className="flex items-center gap-6 pt-2">
-                {['Save on meds', 'Find doctors', 'Own your data'].map((item) => (
-                  <div key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <div className="w-5 h-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                      <CheckIcon size={12} className="text-green-600" />
-                    </div>
-                    {item}
-                  </div>
-                ))}
+                <Button
+                  onClick={handleStartJourney}
+                  size="lg"
+                  variant="outline"
+                  className="bg-white hover:bg-pp-periwinkle text-pp-teal border-2 border-pp-teal rounded-full px-8 py-6 text-lg font-semibold transition-all"
+                >
+                  Whitelist + KYC
+                </Button>
               </div>
             </div>
             
-            {/* Right Visual - Abstract Tech Illustration */}
-            <div className="relative flex items-center justify-center min-h-[400px]">
+            {/* Right Visual - Phone Mockup */}
+            <div className="relative flex items-center justify-center min-h-[400px] lg:min-h-[500px]">
               {/* Background Glow */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-[350px] h-[350px] lg:w-[450px] lg:h-[450px] bg-gradient-to-br from-mfp-blue-400/40 via-cyan-400/30 to-purple-400/30 rounded-full blur-3xl animate-pulse-slow" />
+                <div className="w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] bg-gradient-to-br from-pp-teal/20 via-pp-sage/10 to-pp-purple/10 rounded-full blur-3xl" />
               </div>
               
-              {/* Abstract Floating Elements */}
-              <div className="relative z-10 w-full max-w-md">
-                <div className="relative">
-                  {/* Main Circle */}
-                  <div className="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-mfp-blue-500 to-cyan-500 flex items-center justify-center shadow-2xl shadow-blue-500/30 animate-float">
-                    <div className="text-center text-white">
-                      <p className="text-5xl font-extrabold">70%</p>
-                      <p className="text-sm opacity-80">Average Savings</p>
-                    </div>
-                  </div>
-                  
-                  {/* Floating Cards */}
-                  <div className="absolute -top-4 -left-4 bg-card rounded-2xl p-4 shadow-xl border border-border animate-float" style={{ animationDelay: '0.5s' }}>
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                        <span className="text-green-600 text-lg">💊</span>
-                      </div>
-                      <div>
-                        <p className="text-sm font-bold text-foreground">Save $46</p>
-                        <p className="text-xs text-muted-foreground">Generic switch</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="absolute -bottom-4 -right-4 bg-card rounded-2xl p-4 shadow-xl border border-border animate-float" style={{ animationDelay: '1s' }}>
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                        <span className="text-blue-600 text-lg">👨‍⚕️</span>
-                      </div>
-                      <div>
-                        <p className="text-sm font-bold text-foreground">5 Providers</p>
-                        <p className="text-xs text-muted-foreground">In-network</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="absolute top-1/2 -right-8 bg-card rounded-2xl p-3 shadow-xl border border-border animate-float" style={{ animationDelay: '1.5s' }}>
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
-                        <span className="text-purple-600 text-sm">🔒</span>
-                      </div>
-                      <p className="text-xs font-bold text-foreground">Encrypted</p>
-                    </div>
-                  </div>
-                </div>
+              {/* Phone Mockup Image */}
+              <div className="relative z-10 w-full max-w-sm lg:max-w-md">
+                <img 
+                  src="/assets/hero-phone.png" 
+                  alt="PayPill App on Mobile" 
+                  className="w-full h-auto drop-shadow-2xl"
+                />
               </div>
             </div>
           </div>
@@ -506,10 +497,10 @@ export function LandingPage() {
       </section>
 
       {/* PayPill Coins Showcase Section */}
-      <section className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <section className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-pp-offwhite">
         {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-white to-cyan-50/80 dark:from-blue-950/30 dark:via-background dark:to-cyan-950/20" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-mfp-blue-400/10 via-cyan-400/10 to-purple-400/10 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-pp-periwinkle/30 via-pp-offwhite to-pp-sage/20" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-pp-teal/10 via-pp-sage/10 to-pp-purple/10 rounded-full blur-3xl" />
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -517,7 +508,7 @@ export function LandingPage() {
             <div className="relative">
               {/* Glow behind image */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] bg-gradient-to-br from-mfp-blue-400/30 via-cyan-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse-slow" />
+                <div className="w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] bg-gradient-to-br from-pp-teal/30 via-pp-sage/20 to-pp-purple/20 rounded-full blur-3xl animate-pulse-slow" />
               </div>
               
               {/* Coin Image */}
@@ -525,7 +516,7 @@ export function LandingPage() {
                 <img 
                   src="/assets/paypill-coins.jpg" 
                   alt="PayPill Coins - Healthcare Savings" 
-                  className="w-full max-w-lg mx-auto rounded-3xl shadow-2xl shadow-black/10 dark:shadow-black/30 border border-border/50"
+                  className="w-full max-w-lg mx-auto rounded-3xl shadow-2xl shadow-black/10 border border-border/50"
                 />
                 {/* Subtle reflection effect */}
                 <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[80%] h-8 bg-gradient-to-b from-black/5 to-transparent rounded-full blur-xl" />
@@ -534,14 +525,14 @@ export function LandingPage() {
             
             {/* Right - Content */}
             <div className="text-center lg:text-left space-y-6">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-mfp-yellow-100 to-amber-100 dark:from-mfp-yellow-900/30 dark:to-amber-900/30 rounded-full border border-mfp-yellow-200 dark:border-mfp-yellow-800">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-pp-sage/30 rounded-full border border-pp-sage">
                 <span className="text-lg">💰</span>
-                <span className="text-sm font-semibold text-mfp-yellow-700 dark:text-mfp-yellow-400">Real Savings, Real Value</span>
+                <span className="text-sm font-semibold text-pp-teal">Real Savings, Real Value</span>
               </div>
               
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground leading-tight">
                 Turn Your Healthcare<br />
-                <span className="bg-gradient-to-r from-mfp-blue-500 to-cyan-500 bg-clip-text text-transparent">Into Savings</span>
+                <span className="text-pp-teal">Into Savings</span>
               </h2>
             </div>
           </div>
@@ -549,22 +540,22 @@ export function LandingPage() {
       </section>
 
       {/* Video Showcase Section */}
-      <section className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-secondary">
+      <section className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-pp-sage">
         {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary via-blue-50/30 to-secondary dark:via-blue-950/10" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-mfp-blue-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-pp-sage via-pp-periwinkle/20 to-pp-sage" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-pp-teal/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-pp-purple/10 rounded-full blur-3xl" />
         
         <div className="max-w-5xl mx-auto relative z-10">
           {/* Section Header */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-mfp-blue-100 to-cyan-100 dark:from-mfp-blue-900/30 dark:to-cyan-900/30 rounded-full border border-mfp-blue-200 dark:border-mfp-blue-800 mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-pp-periwinkle rounded-full border border-pp-teal/30 mb-6">
               <span className="text-lg">🎬</span>
-              <span className="text-sm font-semibold text-mfp-blue-700 dark:text-mfp-blue-400">See It In Action</span>
+              <span className="text-sm font-semibold text-pp-teal">See It In Action</span>
             </div>
             
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground mb-4">
-              Watch How PayPill <span className="bg-gradient-to-r from-mfp-blue-500 to-cyan-500 bg-clip-text text-transparent">Works</span>
+              Watch How PayPill <span className="text-pp-teal">Works</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Discover how our AI-powered dashboard helps you save on healthcare, find the best providers, and take control of your health data.
@@ -574,7 +565,7 @@ export function LandingPage() {
           {/* Video Container */}
           <div className="relative">
             {/* Decorative Frame */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-mfp-blue-500 via-cyan-500 to-mfp-blue-500 rounded-3xl opacity-20 blur-xl" />
+            <div className="absolute -inset-4 bg-gradient-to-r from-pp-teal via-pp-sage to-pp-teal rounded-3xl opacity-20 blur-xl" />
             
             {/* Video Wrapper */}
             <div className="relative bg-card rounded-2xl overflow-hidden shadow-2xl border border-border">
@@ -592,7 +583,7 @@ export function LandingPage() {
               {/* Video Info Bar */}
               <div className="px-6 py-4 bg-card border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-mfp-blue-500 to-cyan-500 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-pp-teal flex items-center justify-center">
                     <PayPillLogo size={24} />
                   </div>
                   <div>
@@ -603,7 +594,7 @@ export function LandingPage() {
                 
                 <Button
                   onClick={handleStartJourney}
-                  className="bg-gradient-to-r from-mfp-blue-500 to-mfp-blue-600 hover:from-mfp-blue-600 hover:to-mfp-blue-700 text-white rounded-full px-6 py-2.5 text-sm font-semibold shadow-lg shadow-blue-500/25"
+                  className="bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full px-6 py-2.5 text-sm font-semibold shadow-lg"
                 >
                   Try It Free
                   <ChevronRightIcon size={16} className="ml-2" />
@@ -629,10 +620,94 @@ export function LandingPage() {
         </div>
       </section>
 
+      {/* PayPill Helper App Section */}
+      <section id="helper-app" className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 relative bg-white overflow-hidden">
+        {/* Subtle background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-pp-teal/5 via-white to-pp-teal/5" />
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left - Content */}
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-pp-teal/10 rounded-full border border-pp-teal/20">
+                <svg className="w-5 h-5 text-pp-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+                <span className="text-sm font-semibold text-pp-teal">Mobile & Desktop</span>
+              </div>
+              
+              <h2 className="text-4xl sm:text-5xl font-bold text-foreground leading-tight">
+                PayPill <span className="text-pp-teal">Helper App</span>
+              </h2>
+              
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Our PayPill Helper App allows individuals, on both mobile and desktop, to securely access and review all their healthcare data from multiple institutions.
+              </p>
+              
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                The app also provides personalised alternative healthcare solutions tailored to each user's unique needs, powered by our patented AI and Machine Learning algorithms.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <Button
+                  onClick={handleStartJourney}
+                  className="bg-pp-teal hover:bg-pp-teal-600 text-white rounded-lg px-6 py-3 font-medium shadow-lg shadow-pp-teal/20"
+                >
+                  Get the App
+                  <ChevronRightIcon size={18} className="ml-2" />
+                </Button>
+                <Button
+                  onClick={handleStartJourney}
+                  variant="outline"
+                  className="border-pp-teal text-pp-teal hover:bg-pp-teal/5 rounded-lg px-6 py-3 font-medium"
+                >
+                  Learn More
+                </Button>
+              </div>
+              
+              {/* Feature highlights */}
+              <div className="grid grid-cols-2 gap-4 pt-6">
+                {[
+                  { icon: '🔐', title: 'Secure Access', desc: 'End-to-end encryption' },
+                  { icon: '📊', title: 'Unified Data', desc: 'All institutions in one place' },
+                  { icon: '🤖', title: 'AI Insights', desc: 'Personalized recommendations' },
+                  { icon: '💡', title: 'Smart Alerts', desc: 'Never miss important updates' },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-gray-50">
+                    <span className="text-2xl">{item.icon}</span>
+                    <div>
+                      <p className="font-medium text-foreground text-sm">{item.title}</p>
+                      <p className="text-xs text-muted-foreground">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Right - Image */}
+            <div className="relative">
+              {/* Glow effect */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-[90%] h-[90%] bg-pp-teal/10 rounded-3xl blur-3xl" />
+              </div>
+              
+              {/* Dashboard Image */}
+              <div className="relative z-10 transform hover:scale-[1.02] transition-transform duration-500">
+                <img 
+                  src="/assets/paypill-helper-app.png" 
+                  alt="PayPill Helper App Dashboard" 
+                  className="w-full rounded-2xl shadow-2xl shadow-black/10"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
-      <section id="features" className="py-24 px-4 sm:px-6 lg:px-8 relative">
+      <section id="features" className="py-24 px-4 sm:px-6 lg:px-8 relative bg-gray-50">
         {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-50/30 to-transparent dark:via-blue-950/10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-pp-teal/5 to-transparent" />
         
         <div className="max-w-7xl mx-auto relative">
           <div className="text-center max-w-2xl mx-auto mb-16">
@@ -668,10 +743,10 @@ export function LandingPage() {
       </section>
 
       {/* How It Works - Interactive */}
-      <section className="py-24 bg-secondary px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <section className="py-24 bg-pp-periwinkle px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         {/* Decorative Elements */}
-        <div className="absolute top-0 left-0 w-64 h-64 bg-mfp-blue-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-0 w-64 h-64 bg-pp-teal/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-64 h-64 bg-pp-sage/10 rounded-full blur-3xl" />
         
         <div className="max-w-7xl mx-auto relative">
           <div className="text-center max-w-2xl mx-auto mb-16">
@@ -699,13 +774,13 @@ export function LandingPage() {
           </div>
           
           {/* Connection Line (Desktop) */}
-          <div className="hidden md:block absolute top-[180px] left-[20%] right-[20%] h-0.5 bg-gradient-to-r from-mfp-blue-500 via-mfp-yellow-500 to-green-500 opacity-30" />
+          <div className="hidden md:block absolute top-[180px] left-[20%] right-[20%] h-0.5 bg-gradient-to-r from-pp-teal via-pp-sage to-pp-purple opacity-30" />
           
           <div className="text-center mt-16">
             <Button
               onClick={handleStartJourney}
               size="lg"
-              className="bg-gradient-to-r from-mfp-blue-500 to-mfp-blue-600 hover:from-mfp-blue-600 hover:to-mfp-blue-700 text-white rounded-full px-10 py-6 text-lg font-semibold shadow-lg shadow-blue-500/25"
+              className="bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full px-10 py-6 text-lg font-semibold shadow-lg"
             >
               Start Your Journey
               <ChevronRightIcon size={20} className="ml-2" />
@@ -714,27 +789,238 @@ export function LandingPage() {
         </div>
       </section>
 
+      {/* About Us Section */}
+      <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-pp-offwhite">
+        <div className="absolute inset-0 bg-gradient-to-br from-pp-periwinkle/30 via-pp-offwhite to-pp-sage/20" />
+        
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-pp-teal rounded-full mb-6">
+              <span className="text-lg">🏥</span>
+              <span className="text-sm font-semibold text-white">About PayPill</span>
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-foreground mb-6">
+              Who We Are
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              We're building the future of healthcare—one where patients control their data, access affordable treatments, and benefit from every step of their wellness journey.
+            </p>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-12 mb-20">
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold text-foreground">Pioneering Digital Health</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                PayPill Technologies is a pioneering digital health company at the intersection of blockchain and artificial intelligence. Our patented technology ecosystem empowers individuals to take control of their healthcare journey—removing barriers, reducing costs, and creating value for patients worldwide.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                We partner with employers and third-party payers to deliver secure, direct digital healthcare management that puts patients first.
+              </p>
+            </div>
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold text-foreground">The PayPill Vision</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Healthcare should work <em>for</em> people—not the other way around.
+              </p>
+              <ul className="space-y-3">
+                {[
+                  'Own their health data securely on the blockchain',
+                  'Access affordable medications and specialty drugs through localized digital contracts',
+                  'Earn rewards via the PayPill PPLL token for improving their health outcomes'
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-pp-teal/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckIcon size={14} className="text-pp-teal" />
+                    </div>
+                    <span className="text-muted-foreground">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-muted-foreground leading-relaxed italic">
+                Think of it as healthcare that pays you back—like AirMiles for wellness.
+              </p>
+            </div>
+          </div>
+          
+          {/* Our Solution */}
+          <div className="bg-card rounded-3xl p-8 lg:p-12 border border-border shadow-xl">
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-extrabold text-foreground mb-4">Our Solution</h3>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-12">
+              <div className="space-y-6">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-100 dark:bg-red-900/30 rounded-full">
+                  <span className="text-sm font-semibold text-red-700 dark:text-red-400">The Problem</span>
+                </div>
+                <h4 className="text-xl font-bold text-foreground">Healthcare today is broken.</h4>
+                <p className="text-muted-foreground leading-relaxed">
+                  Global healthcare transactions are trapped in a web of middlemen and bureaucratic systems that drive costs sky-high—often making care unattainable for those who need it most.
+                </p>
+                <div className="bg-pp-periwinkle rounded-2xl p-6">
+                  <p className="text-3xl font-black text-pp-teal mb-2">$500 Billion</p>
+                  <p className="text-sm text-muted-foreground">spent annually in the U.S. alone on healthcare administration and insurer contracts</p>
+                </div>
+                <p className="text-muted-foreground leading-relaxed">
+                  Medication errors and fragmented health records contribute to preventable morbidity rates. Patients remain powerless, with no control over their own data or healthcare decisions.
+                </p>
+              </div>
+              
+              <div className="space-y-6">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 rounded-full">
+                  <span className="text-sm font-semibold text-green-700 dark:text-green-400">Our Answer</span>
+                </div>
+                <h4 className="text-xl font-bold text-foreground">PayPill's AI-powered "healthcare helper" puts patients back in the driver's seat.</h4>
+                
+                <div className="space-y-4">
+                  {[
+                    { title: 'Personalized Health Guidance', desc: 'Our AI understands your unique healthcare needs and works alongside your physicians to review medications, services, and scientifically-validated alternative treatments.' },
+                    { title: 'Rewards for Wellness', desc: 'Earn PayPill PPLL tokens for improving your health status. Use these tokens to purchase medications and healthcare services—or exchange anonymized data for additional savings.' },
+                    { title: 'Data Ownership & Security', desc: 'Our blockchain technology gives you a single, highly secure location for ALL your health data. No more fragmented records. No more lost information.' },
+                    { title: 'Collective Bargaining Power', desc: 'When you choose to share anonymized data, our AI aggregates insights across our community to negotiate better rates with healthcare providers and insurers—benefiting everyone.' }
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-full bg-pp-teal flex items-center justify-center flex-shrink-0">
+                        <span className="text-white text-sm font-bold">{i + 1}</span>
+                      </div>
+                      <div>
+                        <h5 className="font-semibold text-foreground mb-1">{item.title}</h5>
+                        <p className="text-sm text-muted-foreground">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team & Advisors Section */}
+      <section id="team" className="py-24 bg-pp-sage px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-pp-teal/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-pp-purple/10 rounded-full blur-3xl" />
+        
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-pp-teal rounded-full mb-6">
+              <span className="text-lg">👥</span>
+              <span className="text-sm font-semibold text-white">Leadership & Advisors</span>
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-foreground mb-4">
+              Team & Advisors
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Industry experts united by a shared vision: healthcare that works for everyone.
+            </p>
+          </div>
+          
+          {/* Founders */}
+          <div className="mb-16">
+            <h3 className="text-xl font-bold text-foreground mb-8 text-center">Founders</h3>
+            <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+              {[
+                { name: 'Dr. John Kutzko', role: 'Chief Scientific Officer and Co-Founder', linkedin: '#' },
+                { name: 'Dr. Wayne C. A. Wright', role: 'Chief Executive Officer and Co-Founder', linkedin: '#' }
+              ].map((person, i) => (
+                <div key={i} className="bg-card rounded-2xl p-8 border border-border shadow-lg text-center hover:shadow-xl transition-shadow">
+                  <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-pp-teal flex items-center justify-center">
+                    <span className="text-2xl font-bold text-white">{person.name.split(' ').pop()?.[0]}</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-foreground mb-1">{person.name}</h4>
+                  <p className="text-sm text-muted-foreground mb-4">{person.role}</p>
+                  <a href={person.linkedin} className="inline-flex items-center gap-2 text-pp-teal hover:text-pp-teal-600 transition-colors text-sm font-medium">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Advisory Board */}
+          <div>
+            <h3 className="text-xl font-bold text-foreground mb-8 text-center">Advisory Board</h3>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { name: 'Ray Bailey', role: 'Specialty Healthcare', linkedin: '#' },
+                { name: 'Tayo Dada', role: 'Cybersecurity & Blockchain', linkedin: '#' },
+                { name: 'Rich Jarvis', role: 'HR, Leadership, Culture & Values', linkedin: '#' },
+                { name: 'Scott Lake', role: 'Blockchain & AI', linkedin: '#' },
+                { name: 'Cal Evans', role: 'Legal & Regulatory', linkedin: '#' },
+                { name: 'Rich Slater', role: 'Legal & Regulatory', linkedin: '#' },
+                { name: 'André Wright', role: 'Product & Data', linkedin: '#' },
+                { name: 'Jay Godla', role: 'Global Healthcare & PBMs', linkedin: '#' }
+              ].map((person, i) => (
+                <div key={i} className="bg-card rounded-xl p-6 border border-border shadow hover:shadow-lg transition-shadow">
+                  <h4 className="font-semibold text-foreground mb-1">{person.name}</h4>
+                  <p className="text-sm text-muted-foreground mb-3">{person.role}</p>
+                  <a href={person.linkedin} className="inline-flex items-center gap-1.5 text-pp-teal hover:text-pp-teal-600 transition-colors text-sm">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-pp-offwhite">
+        <div className="absolute inset-0 bg-gradient-to-br from-pp-periwinkle/30 via-pp-offwhite to-pp-sage/20" />
+        
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div className="bg-card rounded-3xl p-8 lg:p-16 border border-border shadow-xl text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-pp-teal rounded-full mb-6">
+              <span className="text-lg">📧</span>
+              <span className="text-sm font-semibold text-white">Get In Touch</span>
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mb-4">
+              Contact Us
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+              Have questions about PayPill or interested in partnership opportunities?
+            </p>
+            
+            <div className="inline-flex items-center gap-3 px-8 py-4 bg-pp-periwinkle rounded-2xl">
+              <svg className="w-6 h-6 text-pp-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <a href="mailto:investor@paypill.com" className="text-lg font-semibold text-foreground hover:text-pp-teal transition-colors">
+                investor@paypill.com
+              </a>
+            </div>
+            
+            <p className="mt-8 text-sm text-muted-foreground">
+              PayPill Technologies — Changing Healthcare Forever
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-mfp-blue-500 via-mfp-blue-600 to-cyan-600 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <section className="py-24 bg-pp-teal px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-mfp-yellow-400/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-pp-sage/30 rounded-full blur-3xl" />
           {/* Grid Pattern */}
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px]" />
         </div>
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-6">
-            Ready to Save on Healthcare?
+            Join the Healthcare Revolution
           </h2>
-          <p className="text-lg sm:text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
-            Join 50,000+ users who are taking control of their health and saving money.
+          <p className="text-lg sm:text-xl text-white/80 mb-10 max-w-2xl mx-auto">
+            Be part of the digital healthcare ecosystem that's changing everything. Own your data. Save on care. Get rewarded.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               onClick={handleStartJourney}
               size="lg"
-              className="bg-white text-mfp-blue-600 hover:bg-gray-100 rounded-full px-10 py-6 text-lg font-bold shadow-xl"
+              className="bg-white text-pp-teal hover:bg-pp-periwinkle rounded-full px-10 py-6 text-lg font-bold shadow-xl"
             >
               Get Started Free
               <ChevronRightIcon size={20} className="ml-2" />
@@ -744,17 +1030,26 @@ export function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 sm:py-16 bg-gray-900 dark:bg-black text-gray-400 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+      <footer className="py-12 sm:py-16 bg-pp-charcoal text-gray-300 px-4 sm:px-6 lg:px-8 border-t border-pp-charcoal-700">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 mb-12">
-            <div className="col-span-2">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-12 mb-12">
+            <div className="col-span-2 md:col-span-1">
               <div className="flex items-center gap-3 mb-4">
                 <PayPillLogo size={48} className="sm:w-14" />
                 <span className="text-xl sm:text-2xl font-black text-white tracking-tight">PayPill</span>
               </div>
               <p className="text-sm leading-relaxed max-w-sm mb-6">
-                Your AI-powered health compass. Navigate healthcare with confidence.
+                Changing healthcare forever through blockchain and AI.
               </p>
+            </div>
+            
+            <div>
+              <h4 className="text-white font-bold mb-4">Company</h4>
+              <ul className="space-y-3 text-sm">
+                <li><button onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-white transition-colors">About Us</button></li>
+                <li><button onClick={() => document.getElementById('team')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-white transition-colors">Team & Advisors</button></li>
+                <li><button onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-white transition-colors">Contact</button></li>
+              </ul>
             </div>
             
             <div>
@@ -778,7 +1073,7 @@ export function LandingPage() {
             </div>
           </div>
           
-          <div className="pt-8 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="pt-8 border-t border-pp-charcoal-600 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-sm">© 2024 PayPill. All rights reserved.</p>
             <p className="text-xs">Not a substitute for professional medical advice.</p>
           </div>

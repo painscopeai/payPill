@@ -4,137 +4,122 @@
 
 @layer base {
   :root {
-    /* Light Mode - MyFitnessPal Inspired Color Scheme */
+    /* PayPill Dashboard Color Palette - From Design Reference */
     
-    /* Primary: Bright Blue */
-    --primary: 212 100% 47%;
+    /* Primary: Teal from dashboard */
+    --primary: 174 35% 50%;
     --primary-foreground: 0 0% 100%;
     
-    /* Background: Clean White */
+    /* Background: Clean white */
     --background: 0 0% 100%;
-    --foreground: 220 20% 15%;
+    --foreground: 220 20% 12%;
     
     /* Card: White with subtle shadow */
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 15%;
+    --card-foreground: 220 20% 12%;
     
     /* Popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 15%;
+    --popover-foreground: 220 20% 12%;
     
-    /* Secondary: Light Gray */
+    /* Secondary: Light gray for backgrounds */
     --secondary: 220 14% 96%;
-    --secondary-foreground: 220 20% 15%;
+    --secondary-foreground: 220 20% 12%;
     
-    /* Muted */
+    /* Muted: Light gray */
     --muted: 220 14% 96%;
     --muted-foreground: 220 10% 45%;
     
-    /* Accent: Yellow/Gold */
-    --accent: 45 100% 52%;
-    --accent-foreground: 220 20% 15%;
+    /* Accent: Light teal */
+    --accent: 174 30% 70%;
+    --accent-foreground: 220 20% 12%;
     
     /* Destructive */
-    --destructive: 0 84% 60%;
+    --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 100%;
     
-    /* Borders */
+    /* Borders - Very light gray */
     --border: 220 13% 90%;
     --input: 220 13% 90%;
-    --ring: 212 100% 47%;
+    --ring: 174 35% 50%;
     --radius: 0.75rem;
     
-    /* Brand Colors */
-    --mfp-blue: 212 100% 47%;
-    --mfp-yellow: 45 100% 52%;
-    --mfp-dark: 220 20% 15%;
-    --mfp-gray: 220 10% 45%;
-    --mfp-light-gray: 220 14% 96%;
+    /* Brand Colors - Exact from dashboard */
+    --pp-teal: 174 35% 50%;
+    --pp-teal-light: 174 30% 70%;
+    --pp-teal-dark: 174 40% 40%;
+    --pp-white: 0 0% 100%;
+    --pp-gray-100: 220 14% 96%;
+    --pp-gray-200: 220 13% 90%;
+    --pp-gray-300: 220 10% 75%;
+    --pp-gray-400: 220 10% 55%;
+    --pp-gray-500: 220 10% 45%;
+    --pp-gray-600: 220 15% 35%;
+    --pp-gray-700: 220 20% 25%;
+    --pp-gray-800: 220 20% 15%;
+    --pp-gray-900: 220 25% 10%;
     
     /* Status Colors */
-    --success: 142 71% 45%;
+    --success: 150 45% 50%;
     --success-foreground: 0 0% 100%;
-    --warning: 38 92% 50%;
+    --warning: 40 85% 55%;
     --warning-foreground: 0 0% 100%;
-    --info: 212 100% 47%;
+    --info: 174 35% 50%;
     --info-foreground: 0 0% 100%;
     
     /* Sidebar */
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 220 20% 15%;
-    --sidebar-primary: 212 100% 47%;
+    --sidebar-foreground: 220 20% 12%;
+    --sidebar-primary: 174 35% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 220 14% 96%;
-    --sidebar-accent-foreground: 220 20% 15%;
+    --sidebar-accent-foreground: 220 20% 12%;
     --sidebar-border: 220 13% 90%;
-    --sidebar-ring: 212 100% 47%;
+    --sidebar-ring: 174 35% 50%;
   }
 
   .dark {
-    /* Dark Mode */
-    
-    /* Primary: Bright Blue */
-    --primary: 212 100% 50%;
+    /* Dark Mode - Adjusted */
+    --primary: 174 35% 55%;
     --primary-foreground: 0 0% 100%;
     
-    /* Background: Dark */
-    --background: 220 20% 8%;
+    --background: 220 18% 10%;
     --foreground: 0 0% 95%;
     
-    /* Card: Dark */
-    --card: 220 18% 12%;
+    --card: 220 15% 14%;
     --card-foreground: 0 0% 95%;
     
-    /* Popover */
-    --popover: 220 18% 12%;
+    --popover: 220 15% 14%;
     --popover-foreground: 0 0% 95%;
     
-    /* Secondary: Dark Gray */
-    --secondary: 220 15% 18%;
+    --secondary: 220 15% 20%;
     --secondary-foreground: 0 0% 95%;
     
-    /* Muted */
-    --muted: 220 15% 18%;
+    --muted: 220 15% 20%;
     --muted-foreground: 220 10% 60%;
     
-    /* Accent: Yellow/Gold */
-    --accent: 45 100% 52%;
-    --accent-foreground: 220 20% 8%;
+    --accent: 174 30% 40%;
+    --accent-foreground: 0 0% 100%;
     
-    /* Destructive */
-    --destructive: 0 84% 60%;
+    --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 100%;
     
-    /* Borders */
-    --border: 220 15% 20%;
-    --input: 220 15% 20%;
-    --ring: 212 100% 50%;
-    --radius: 0.75rem;
+    --border: 220 15% 22%;
+    --input: 220 15% 22%;
+    --ring: 174 35% 55%;
     
-    /* Brand Colors - Adjusted for dark */
-    --mfp-blue: 212 100% 55%;
-    --mfp-yellow: 45 100% 55%;
-    --mfp-dark: 0 0% 95%;
-    --mfp-gray: 220 10% 60%;
-    --mfp-light-gray: 220 15% 18%;
+    --pp-teal: 174 35% 55%;
+    --pp-teal-light: 174 30% 45%;
+    --pp-teal-dark: 174 40% 45%;
     
-    /* Status Colors */
-    --success: 142 71% 50%;
-    --success-foreground: 0 0% 100%;
-    --warning: 38 92% 55%;
-    --warning-foreground: 0 0% 100%;
-    --info: 212 100% 55%;
-    --info-foreground: 0 0% 100%;
-    
-    /* Sidebar */
-    --sidebar-background: 220 18% 10%;
+    --sidebar-background: 220 15% 10%;
     --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 212 100% 50%;
+    --sidebar-primary: 174 35% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 220 15% 18%;
     --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 220 15% 20%;
-    --sidebar-ring: 212 100% 50%;
+    --sidebar-border: 220 15% 22%;
+    --sidebar-ring: 174 35% 55%;
   }
 }
 
@@ -149,75 +134,81 @@
   
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 }
 
 @layer utilities {
-  /* MFP Card Styles */
-  .mfp-card {
-    @apply bg-card rounded-2xl shadow-lg shadow-black/5 border border-border;
+  /* Dashboard Card Style */
+  .dashboard-card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-100;
   }
   
-  .mfp-card-hover {
-    @apply mfp-card transition-all duration-300 hover:shadow-xl hover:shadow-black/10 hover:-translate-y-1;
+  .dashboard-card-hover {
+    @apply dashboard-card transition-all duration-200 hover:shadow-md;
   }
   
-  /* Yellow Decorative Circle */
-  .yellow-blob {
-    @apply absolute rounded-full;
-    background: linear-gradient(135deg, #FFC107 0%, #FFB300 50%, #FF8F00 100%);
+  /* Teal Button Style - Dashboard */
+  .btn-teal {
+    @apply bg-[hsl(174,35%,50%)] hover:bg-[hsl(174,40%,45%)] text-white font-medium rounded-lg px-5 py-2.5 transition-all duration-200;
   }
   
-  /* Blue Button Style */
-  .btn-primary {
-    @apply bg-[#0066EE] hover:bg-[#0052CC] text-white font-semibold rounded-full px-8 py-4 transition-all duration-200 shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/30;
+  .btn-outline-teal {
+    @apply bg-transparent hover:bg-[hsl(174,35%,95%)] text-[hsl(174,35%,50%)] border border-[hsl(174,35%,50%)] rounded-lg px-5 py-2.5 transition-all duration-200;
   }
   
-  /* Text Gradient */
-  .text-gradient-blue {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #0066EE 0%, #0052CC 100%);
+  /* Text Colors */
+  .text-teal {
+    @apply text-[hsl(174,35%,50%)];
   }
   
-  /* Section Background */
+  .text-teal-dark {
+    @apply text-[hsl(174,40%,40%)];
+  }
+  
+  /* Background Colors */
+  .bg-teal {
+    @apply bg-[hsl(174,35%,50%)];
+  }
+  
+  .bg-teal-light {
+    @apply bg-[hsl(174,30%,95%)];
+  }
+  
+  /* Section Backgrounds */
   .section-white {
-    @apply bg-background;
+    @apply bg-white;
   }
   
   .section-gray {
-    @apply bg-secondary;
+    @apply bg-gray-50;
   }
   
   /* Headline Style */
   .headline-xl {
-    @apply text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground leading-[1.1];
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight;
   }
   
   .headline-lg {
-    @apply text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground leading-tight;
+    @apply text-3xl sm:text-4xl font-bold tracking-tight leading-tight;
   }
   
   /* Body Text */
   .body-lg {
-    @apply text-lg sm:text-xl text-muted-foreground leading-relaxed;
+    @apply text-lg leading-relaxed;
   }
   
   /* Animation Utilities */
   .animate-fade-in {
-    animation: fadeIn 0.6s ease-out forwards;
+    animation: fadeIn 0.5s ease-out forwards;
   }
   
   .animate-slide-up {
-    animation: slideUp 0.6s ease-out forwards;
+    animation: slideUp 0.5s ease-out forwards;
   }
   
   .animate-float {
     animation: float 6s ease-in-out infinite;
-  }
-  
-  .animate-pulse-slow {
-    animation: pulseSlow 3s ease-in-out infinite;
   }
 }
 
@@ -227,18 +218,13 @@
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-
-@keyframes pulseSlow {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+  50% { transform: translateY(-10px); }
 }
 
 @keyframes slideDown {
@@ -252,22 +238,22 @@
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--secondary));
-  border-radius: 4px;
+  background: hsl(var(--pp-gray-100));
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--border));
-  border-radius: 4px;
+  background: hsl(var(--pp-gray-300));
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground));
+  background: hsl(var(--pp-gray-400));
 }
 
 /* Focus Ring */
@@ -275,12 +261,5 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  @apply outline-none ring-2 ring-[#0066EE] ring-offset-2;
-}
-
-.dark button:focus-visible,
-.dark input:focus-visible,
-.dark select:focus-visible,
-.dark textarea:focus-visible {
-  @apply ring-offset-gray-900;
+  @apply outline-none ring-2 ring-[hsl(174,35%,50%)] ring-offset-2;
 }

@@ -48,7 +48,35 @@ module.exports = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // MyFitnessPal Brand Colors
+        // PayPill Dashboard Colors - From Design Reference
+        pp: {
+          teal: {
+            DEFAULT: '#5BA8A0',
+            50: '#E8F5F4',
+            100: '#D1EBE8',
+            200: '#A3D7D1',
+            300: '#75C3BA',
+            400: '#5BA8A0',
+            500: '#4A9A92',
+            600: '#3D8A82',
+            700: '#307A72',
+            800: '#236A62',
+            900: '#165A52',
+          },
+          gray: {
+            50: '#F9FAFB',
+            100: '#F3F4F6',
+            200: '#E5E7EB',
+            300: '#D1D5DB',
+            400: '#9CA3AF',
+            500: '#6B7280',
+            600: '#4B5563',
+            700: '#374151',
+            800: '#1F2937',
+            900: '#111827',
+          },
+        },
+        // Legacy MyFitnessPal colors (for backward compatibility)
         mfp: {
           blue: {
             DEFAULT: '#0066EE',

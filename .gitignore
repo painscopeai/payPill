@@ -27,3 +27,6 @@ Thumbs.db
 
 # TypeScript
 *.tsbuildinfo
+
+# Local UI drop folder (merged into app/)
+app/UI Update/

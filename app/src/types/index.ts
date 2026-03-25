@@ -79,6 +79,10 @@ export interface Medication {
   adherenceStatus: 'excellent' | 'good' | 'fair' | 'poor';
   isBrandName: boolean;
   genericEquivalent?: string;
+  refillsRemaining?: number;
+  lastRefillDate?: string;
+  nextRefillDate?: string;
+  pharmacyId?: string;
 }
 
 // Allergies
@@ -135,6 +139,25 @@ export interface HealthcareProvider {
   reviewCount: number;
   insuranceAccepted: string[];
   image?: string;
+  bio?: string;
+  education?: string[];
+  languages?: string[];
+  nextAvailable?: string;
+}
+
+// Pharmacy
+export interface Pharmacy {
+  id: string;
+  name: string;
+  address: string;
+  phone: string;
+  distance: number;
+  hours: string;
+  services: string[];
+  rating: number;
+  isOpen: boolean;
+  deliveryAvailable: boolean;
+  insuranceAccepted: string[];
 }
 
 // Emergency Contact
@@ -182,7 +205,7 @@ export interface Lifestyle {
 // AI Recommendations
 export interface AIRecommendation {
   id: string;
-  type: 'medication' | 'provider' | 'guidance' | 'savings' | 'preventive';
+  type: 'medication' | 'provider' | 'guidance' | 'savings' | 'preventive' | 'lifestyle' | 'refill' | 'appointment';
   title: string;
   description: string;
   priority: 'high' | 'medium' | 'low';
@@ -191,15 +214,60 @@ export interface AIRecommendation {
   savings?: number;
   provider?: HealthcareProvider;
   medication?: Medication;
+  pharmacy?: Pharmacy;
   createdAt: string;
   expiresAt?: string;
   dismissed: boolean;
+  aiConfidence?: number;
+  evidence?: string[];
+}
+
+// Health Insights from AI
+export interface HealthInsight {
+  id: string;
+  category: 'risk' | 'trend' | 'opportunity' | 'achievement';
+  title: string;
+  description: string;
+  metric?: string;
+  value?: string;
+  trend: 'improving' | 'stable' | 'declining' | 'new';
+  severity?: 'low' | 'medium' | 'high';
+  actionable: boolean;
+  actionText?: string;
+  createdAt: string;
+}
+
+// Risk Assessment
+export interface RiskAssessment {
+  overallRisk: 'low' | 'moderate' | 'high';
+  overallScore: number;
+  categories: {
+    cardiovascular: { risk: 'low' | 'moderate' | 'high'; score: number; factors: string[] };
+    diabetes: { risk: 'low' | 'moderate' | 'high'; score: number; factors: string[] };
+    mentalHealth: { risk: 'low' | 'moderate' | 'high'; score: number; factors: string[] };
+    lifestyle: { risk: 'low' | 'moderate' | 'high'; score: number; factors: string[] };
+  };
+  lastUpdated: string;
+  nextAssessment: string;
+}
+
+// Follow-up Tasks
+export interface FollowUpTask {
+  id: string;
+  title: string;
+  description?: string;
+  type: 'appointment' | 'lab' | 'medication' | 'lifestyle' | 'general';
+  priority: 'high' | 'medium' | 'low';
+  dueDate?: string;
+  completed: boolean;
+  completedAt?: string;
+  relatedRecommendationId?: string;
 }
 
 // Timeline Events
 export interface TimelineEvent {
   id: string;
-  type: 'profile_update' | 'condition_added' | 'medication_added' | 'insurance_connected' | 'appointment' | 'lab_result' | 'ai_recommendation';
+  type: 'profile_update' | 'condition_added' | 'medication_added' | 'insurance_connected' | 'appointment' | 'lab_result' | 'ai_recommendation' | 'medication_order' | 'refill' | 'message';
   title: string;
   description: string;
   timestamp: string;
@@ -215,6 +283,82 @@ export interface PrivacyAuditLog {
   timestamp: string;
   aiEngine: boolean;
   purpose: string;
+}
+
+// Messages
+export interface Message {
+  id: string;
+  sender: {
+    type: 'ai' | 'doctor' | 'pharmacy' | 'system';
+    name: string;
+    avatar?: string;
+  };
+  subject: string;
+  content: string;
+  timestamp: string;
+  read: boolean;
+  category: 'health' | 'medication' | 'appointment' | 'system' | 'general';
+  actions?: {
+    label: string;
+    action: string;
+  }[];
+}
+
+// Notifications
+export interface Notification {
+  id: string;
+  type: 'reminder' | 'alert' | 'insight' | 'appointment' | 'medication' | 'refill' | 'system';
+  title: string;
+  message: string;
+  timestamp: string;
+  read: boolean;
+  priority: 'high' | 'medium' | 'low';
+  actionLink?: string;
+  actionText?: string;
+}
+
+// Appointments
+export interface Appointment {
+  id: string;
+  providerId: string;
+  providerName: string;
+  providerSpecialty: string;
+  date: string;
+  time: string;
+  duration: number;
+  type: 'in-person' | 'telehealth';
+  status: 'scheduled' | 'confirmed' | 'completed' | 'cancelled' | 'no-show';
+  reason?: string;
+  notes?: string;
+  location?: string;
+  reminderSent: boolean;
+}
+
+// Medication Orders
+export interface MedicationOrder {
+  id: string;
+  medicationId: string;
+  medicationName: string;
+  pharmacyId: string;
+  pharmacyName: string;
+  quantity: number;
+  price: number;
+  status: 'pending' | 'processing' | 'ready' | 'shipped' | 'delivered' | 'cancelled';
+  orderDate: string;
+  estimatedDelivery?: string;
+  deliveryType: 'pickup' | 'delivery';
+  trackingNumber?: string;
+}
+
+// Refill Requests
+export interface RefillRequest {
+  id: string;
+  medicationId: string;
+  pharmacyId: string;
+  status: 'pending' | 'approved' | 'denied' | 'completed';
+  requestedAt: string;
+  completedAt?: string;
+  notes?: string;
 }
 
 // Qualification Answers
@@ -273,7 +417,7 @@ export interface HealthProfileData {
 
 // App State
 export interface AppState {
-  currentView: 'landing' | 'onboarding' | 'dashboard' | 'privacy' | 'providers' | 'medications' | 'qualification' | 'auth' | 'health-profiling';
+  currentView: 'landing' | 'onboarding' | 'dashboard' | 'privacy' | 'providers' | 'medications' | 'qualification' | 'auth' | 'health-profiling' | 'messages' | 'appointments' | 'orders' | 'profile';
   onboardingStep: number;
   user: UserProfile | null;
   healthConditions: HealthCondition[];
@@ -281,13 +425,25 @@ export interface AppState {
   allergies: Allergy[];
   insurance: Insurance | null;
   providers: HealthcareProvider[];
+  pharmacies: Pharmacy[];
   emergencyContacts: EmergencyContact[];
   recommendations: AIRecommendation[];
+  healthInsights: HealthInsight[];
+  riskAssessment: RiskAssessment | null;
+  followUpTasks: FollowUpTask[];
   timeline: TimelineEvent[];
   auditLogs: PrivacyAuditLog[];
   isAuthenticated: boolean;
   qualificationAnswers: QualificationAnswers | null;
   healthProfile: HealthProfileData | null;
+  // New features
+  messages: Message[];
+  notifications: Notification[];
+  appointments: Appointment[];
+  medicationOrders: MedicationOrder[];
+  refillRequests: RefillRequest[];
+  unreadMessageCount: number;
+  unreadNotificationCount: number;
 }
 
 // Form Types for Onboarding
@@ -317,4 +473,14 @@ export interface MedicationPricing {
     distance: number;
     inStock: boolean;
   }[];
+}
+
+// AI Analysis Result
+export interface AIAnalysisResult {
+  insights: HealthInsight[];
+  recommendations: AIRecommendation[];
+  riskAssessment: RiskAssessment;
+  followUpTasks: FollowUpTask[];
+  providerMatches: HealthcareProvider[];
+  pharmacyMatches: Pharmacy[];
 }
