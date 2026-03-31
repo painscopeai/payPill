@@ -843,8 +843,8 @@ export function LandingPage() {
             <h3 className="text-xl font-bold text-foreground mb-8 text-center">Founders</h3>
             <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
               {[
-                { name: 'Dr. John Kutzko', role: 'Chief Scientific Officer and Co-Founder', linkedin: '#' },
-                { name: 'Dr. Wayne C. A. Wright', role: 'Chief Executive Officer and Co-Founder', linkedin: '#' }
+                { name: 'Dr. Wayne C. A. Wright', role: 'Chief Executive Officer and Co-Founder', linkedin: '#' },
+                { name: 'Keegan Drahm', role: 'Chief Technical Officer and Co-Founder', linkedin: '#' }
               ].map((person, i) => (
                 <div key={i} className="bg-card rounded-2xl p-8 border border-border shadow-lg text-center hover:shadow-xl transition-shadow">
                   <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-pp-teal flex items-center justify-center">
@@ -868,12 +868,11 @@ export function LandingPage() {
               {[
                 { name: 'Ray Bailey', role: 'Specialty Healthcare', linkedin: '#' },
                 { name: 'Tayo Dada', role: 'Cybersecurity & Blockchain', linkedin: '#' },
-                { name: 'Rich Jarvis', role: 'HR, Leadership, Culture & Values', linkedin: '#' },
-                { name: 'Scott Lake', role: 'Blockchain & AI', linkedin: '#' },
                 { name: 'Cal Evans', role: 'Legal & Regulatory', linkedin: '#' },
-                { name: 'Rich Slater', role: 'Legal & Regulatory', linkedin: '#' },
                 { name: 'André Wright', role: 'Product & Data', linkedin: '#' },
-                { name: 'Jay Godla', role: 'Global Healthcare & PBMs', linkedin: '#' }
+                { name: 'Jay Godla', role: 'Global Healthcare & PBMs', linkedin: '#' },
+                { name: 'Dr. John Kutzko', role: 'Clinical Science & Advisory', linkedin: '#' },
+                { name: 'Deji O', role: 'Technical Lead', linkedin: '#' }
               ].map((person, i) => (
                 <div key={i} className="bg-card rounded-xl p-6 border border-border shadow hover:shadow-lg transition-shadow">
                   <h4 className="font-semibold text-foreground mb-1">{person.name}</h4>
