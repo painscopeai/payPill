@@ -219,9 +219,14 @@ function AuthModal({
 }
 
 export function LandingPage() {
-  const { state, dispatch } = useApp();
+  const { dispatch } = useApp();
   const [showAuthModal, setShowAuthModal] = useState<'login' | 'signup' | null>(null);
   const [activeStep, setActiveStep] = useState(0);
+
+  const goHome = () => {
+    dispatch({ type: 'SET_VIEW', payload: 'landing' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleStartJourney = () => {
     setShowAuthModal('signup');
@@ -247,14 +252,6 @@ export function LandingPage() {
     setShowAuthModal(null);
     // Navigate to health profiling form
     dispatch({ type: 'SET_VIEW', payload: 'health-profiling' });
-  };
-
-  const handleDashboardClick = () => {
-    if (state.isAuthenticated) {
-      dispatch({ type: 'SET_VIEW', payload: 'dashboard' });
-    } else {
-      setShowAuthModal('login');
-    }
   };
 
   const scrollToFeatures = () => {
@@ -294,10 +291,10 @@ export function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo - Bold and Larger */}
-            <div className="flex items-center gap-2 sm:gap-3">
+            <button onClick={goHome} className="flex items-center gap-2 sm:gap-3" aria-label="Go to home">
               <PayPillLogo size={56} className="sm:w-16 sm:h-auto" />
               <span className="text-xl sm:text-2xl lg:text-3xl font-black text-foreground tracking-tight">PayPill</span>
-            </div>
+            </button>
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
@@ -576,14 +573,14 @@ export function LandingPage() {
               
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button
-                  onClick={handleStartJourney}
+                  onClick={goHome}
                   className="bg-pp-teal hover:bg-pp-teal-600 text-white rounded-lg px-6 py-3 font-medium shadow-lg shadow-pp-teal/20"
                 >
                   Get the App
                   <ChevronRightIcon size={18} className="ml-2" />
                 </Button>
                 <Button
-                  onClick={handleStartJourney}
+                  onClick={goHome}
                   variant="outline"
                   className="border-pp-teal text-pp-teal hover:bg-pp-teal/5 rounded-lg px-6 py-3 font-medium"
                 >
@@ -704,7 +701,7 @@ export function LandingPage() {
           
           <div className="text-center mt-16">
             <Button
-              onClick={handleStartJourney}
+              onClick={goHome}
               size="lg"
               className="bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full px-10 py-6 text-lg font-semibold shadow-lg"
             >
@@ -942,16 +939,6 @@ export function LandingPage() {
           <p className="text-lg sm:text-xl text-white/80 mb-10 max-w-2xl mx-auto">
             Be part of the digital healthcare ecosystem that's changing everything. Own your data. Save on care. Get rewarded.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              onClick={handleStartJourney}
-              size="lg"
-              className="bg-white text-pp-teal hover:bg-pp-periwinkle rounded-full px-10 py-6 text-lg font-bold shadow-xl"
-            >
-              Get Started Free
-              <ChevronRightIcon size={20} className="ml-2" />
-            </Button>
-          </div>
         </div>
       </section>
 
@@ -960,10 +947,10 @@ export function LandingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-12 mb-12">
             <div className="col-span-2 md:col-span-1">
-              <div className="flex items-center gap-3 mb-4">
+              <button onClick={goHome} className="flex items-center gap-3 mb-4" aria-label="Go to home">
                 <PayPillLogo size={48} className="sm:w-14" />
                 <span className="text-xl sm:text-2xl font-black text-white tracking-tight">PayPill</span>
-              </div>
+              </button>
               <p className="text-sm leading-relaxed max-w-sm mb-6">
                 Changing healthcare forever through blockchain and AI.
               </p>
@@ -982,21 +969,9 @@ export function LandingPage() {
               <h4 className="text-white font-bold mb-4">Product</h4>
               <ul className="space-y-3 text-sm">
                 <li><button onClick={scrollToFeatures} className="hover:text-white transition-colors">Features</button></li>
-                <li><button onClick={handleDashboardClick} className="hover:text-white transition-colors">Dashboard</button></li>
               </ul>
             </div>
             
-            <div>
-              <h4 className="text-white font-bold mb-4">Account</h4>
-              <ul className="space-y-3 text-sm">
-                {!state.isAuthenticated && (
-                  <>
-                    <li><button onClick={() => setShowAuthModal('login')} className="hover:text-white transition-colors">Log In</button></li>
-                    <li><button onClick={() => setShowAuthModal('signup')} className="hover:text-white transition-colors">Sign Up</button></li>
-                  </>
-                )}
-              </ul>
-            </div>
           </div>
           
           <div className="pt-8 border-t border-pp-charcoal-600 flex flex-col sm:flex-row justify-between items-center gap-4">
