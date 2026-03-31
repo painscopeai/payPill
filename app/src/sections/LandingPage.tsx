@@ -257,6 +257,10 @@ export function LandingPage() {
     document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const scrollToContact = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const steps = [
     { 
       step: '1', 
@@ -456,9 +460,9 @@ export function LandingPage() {
         <div className="absolute top-0 right-0 w-96 h-96 bg-pp-teal/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-pp-purple/10 rounded-full blur-3xl" />
         
-        <div className="max-w-5xl mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10">
           {/* Section Header */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 max-w-5xl mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-pp-periwinkle rounded-full border border-pp-teal/30 mb-6">
               <span className="text-lg">🎬</span>
               <span className="text-sm font-semibold text-pp-teal">See It In Action</span>
@@ -508,6 +512,48 @@ export function LandingPage() {
                 >
                   Try It Free
                   <ChevronRightIcon size={16} className="ml-2" />
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Audience: Individuals, Employers, Payors — directly under video */}
+          <div className="mt-16 lg:mt-20">
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="flex flex-col h-full rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-lg shadow-black/5">
+                <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-4">For Individuals</h3>
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed flex-1 mb-6">
+                  Unified Health, Personalized Insights. Consolidate all your health data, from medical records to wearables, genomics, chiropractor and scans, and receive personalized recommendations based on millions of anonymous user comparisons.
+                </p>
+                <Button
+                  onClick={scrollToContact}
+                  className="mt-auto w-full bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full py-6 text-sm sm:text-base font-semibold shadow-lg"
+                >
+                  Get started for Personalized Health Recommendations
+                </Button>
+              </div>
+              <div className="flex flex-col h-full rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-lg shadow-black/5">
+                <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-4">For Employers</h3>
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed flex-1 mb-6">
+                  Healthier Employees, Lower Costs. Reduce sickness, absenteeism and lower overall healthcare spend by proactively managing employee health outcomes with drugs/ services that are right for your employees rather than drugs that your employees have no say on within a healthcare contract.
+                </p>
+                <Button
+                  onClick={scrollToContact}
+                  className="mt-auto w-full bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full py-6 text-sm sm:text-base font-semibold shadow-lg"
+                >
+                  Request an Employer Demo
+                </Button>
+              </div>
+              <div className="flex flex-col h-full rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-lg shadow-black/5">
+                <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-4">For Insurance Companies / Payor</h3>
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed flex-1 mb-6">
+                  Maximize Member Outcomes with fixed fee costs for 12 months. Shift administrative burden and financial risk to a fixed-fee platform that actively works to improve member health.
+                </p>
+                <Button
+                  onClick={scrollToContact}
+                  className="mt-auto w-full bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full py-6 text-sm sm:text-base font-semibold shadow-lg"
+                >
+                  Talk to Our Payor Solutions Team
                 </Button>
               </div>
             </div>
