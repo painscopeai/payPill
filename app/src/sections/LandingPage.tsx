@@ -519,9 +519,6 @@ export function LandingPage() {
 
           {/* Audience: Individuals, Employers, Payors — directly under video */}
           <div className="mt-16 lg:mt-20">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-foreground text-center mb-10 max-w-4xl mx-auto">
-              Suggested Audience Headlines and <span className="text-pp-teal">CTAs</span>
-            </h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="flex flex-col h-full rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-lg shadow-black/5">
                 <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-4">For Individuals</h3>
