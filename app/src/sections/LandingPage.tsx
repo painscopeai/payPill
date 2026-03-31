@@ -519,6 +519,9 @@ export function LandingPage() {
 
           {/* Audience: Individuals, Employers, Payors — directly under video */}
           <div className="mt-16 lg:mt-20">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-foreground text-center mb-10 max-w-4xl mx-auto">
+              Suggested Audience Headlines and <span className="text-pp-teal">CTAs</span>
+            </h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="flex flex-col h-full rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-lg shadow-black/5">
                 <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-4">For Individuals</h3>
@@ -527,7 +530,7 @@ export function LandingPage() {
                 </p>
                 <Button
                   onClick={scrollToContact}
-                  className="mt-auto w-full bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full py-6 text-sm sm:text-base font-semibold shadow-lg"
+                  className="mt-auto w-full min-w-0 h-auto shrink whitespace-normal text-center px-4 py-4 sm:py-5 bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full text-sm sm:text-base font-semibold leading-snug shadow-lg"
                 >
                   Get started for Personalized Health Recommendations
                 </Button>
@@ -539,7 +542,7 @@ export function LandingPage() {
                 </p>
                 <Button
                   onClick={scrollToContact}
-                  className="mt-auto w-full bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full py-6 text-sm sm:text-base font-semibold shadow-lg"
+                  className="mt-auto w-full min-w-0 h-auto shrink whitespace-normal text-center px-4 py-4 sm:py-5 bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full text-sm sm:text-base font-semibold leading-snug shadow-lg"
                 >
                   Request an Employer Demo
                 </Button>
@@ -551,7 +554,7 @@ export function LandingPage() {
                 </p>
                 <Button
                   onClick={scrollToContact}
-                  className="mt-auto w-full bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full py-6 text-sm sm:text-base font-semibold shadow-lg"
+                  className="mt-auto w-full min-w-0 h-auto shrink whitespace-normal text-center px-4 py-4 sm:py-5 bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full text-sm sm:text-base font-semibold leading-snug shadow-lg"
                 >
                   Talk to Our Payor Solutions Team
                 </Button>
