@@ -313,37 +313,11 @@ export function LandingPage() {
               <button onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                 Contact
               </button>
-              <button onClick={handleDashboardClick} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                Dashboard
-              </button>
             </div>
             
             {/* Desktop Actions */}
             <div className="hidden md:flex items-center gap-3">
               <ThemeToggle />
-              {state.isAuthenticated ? (
-                <Button
-                  onClick={() => dispatch({ type: 'SET_VIEW', payload: 'dashboard' })}
-                  className="bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full px-6 py-2.5 text-sm font-semibold shadow-lg"
-                >
-                  My Dashboard
-                </Button>
-              ) : (
-                <>
-                  <button 
-                    onClick={() => setShowAuthModal('login')}
-                    className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-4 py-2"
-                  >
-                    Log In
-                  </button>
-                  <Button
-                    onClick={() => setShowAuthModal('signup')}
-                    className="bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full px-6 py-2.5 text-sm font-semibold shadow-lg"
-                  >
-                    Sign Up
-                  </Button>
-                </>
-              )}
             </div>
             
             {/* Mobile Menu Button */}
@@ -392,37 +366,6 @@ export function LandingPage() {
               >
                 Contact
               </button>
-              <button 
-                onClick={() => { handleDashboardClick(); setMobileMenuOpen(false); }}
-                className="block w-full text-left px-4 py-3 text-base font-medium text-foreground hover:bg-secondary rounded-xl transition-colors"
-              >
-                Dashboard
-              </button>
-              <div className="pt-3 border-t border-border space-y-2">
-                {!state.isAuthenticated ? (
-                  <>
-                    <button 
-                      onClick={() => { setShowAuthModal('login'); setMobileMenuOpen(false); }}
-                      className="block w-full text-left px-4 py-3 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-secondary rounded-xl transition-colors"
-                    >
-                      Log In
-                    </button>
-                    <Button
-                      onClick={() => { setShowAuthModal('signup'); setMobileMenuOpen(false); }}
-                      className="w-full bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full py-3 text-base font-semibold shadow-lg"
-                    >
-                      Sign Up
-                    </Button>
-                  </>
-                ) : (
-                  <Button
-                    onClick={() => { dispatch({ type: 'SET_VIEW', payload: 'dashboard' }); setMobileMenuOpen(false); }}
-                    className="w-full bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full py-3 text-base font-semibold shadow-lg"
-                  >
-                    My Dashboard
-                  </Button>
-                )}
-              </div>
             </div>
           </div>
         )}
@@ -457,23 +400,6 @@ export function LandingPage() {
                 A new digital healthcare eco-system powered by our propriety Blockchain, Artificial Intelligence technologies
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  onClick={handleStartJourney}
-                  size="lg"
-                  className="bg-pp-teal hover:bg-pp-teal-600 text-white rounded-full px-8 py-6 text-lg font-semibold shadow-lg transition-all"
-                >
-                  Download Whitepaper
-                </Button>
-                <Button
-                  onClick={handleStartJourney}
-                  size="lg"
-                  variant="outline"
-                  className="bg-white hover:bg-pp-periwinkle text-pp-teal border-2 border-pp-teal rounded-full px-8 py-6 text-lg font-semibold transition-all"
-                >
-                  Whitelist + KYC
-                </Button>
-              </div>
             </div>
             
             {/* Right Visual - Phone Mockup */}
@@ -572,7 +498,7 @@ export function LandingPage() {
               {/* Video Aspect Ratio Container */}
               <div className="relative aspect-video">
                 <iframe
-                  src="https://www.youtube.com/embed/L3Z93ev5jzY?rel=0&modestbranding=1"
+                  src="https://www.youtube.com/embed/Nliv5xU1za0?rel=0&modestbranding=1"
                   title="PayPill Dashboard Demo"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen

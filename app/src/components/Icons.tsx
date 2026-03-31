@@ -6,28 +6,48 @@ interface IconProps {
 // PayPill Exact Logo - Uses the provided image file (bold, larger size)
 export function PayPillLogo({ className = '', size = 80 }: IconProps) {
   return (
-    <img
-      src="/assets/logo.jpg"
-      alt="PayPill"
-      width={size}
-      height={size}
-      className={`object-contain drop-shadow-lg ${className}`}
-      style={{ width: size, height: 'auto', maxHeight: size }}
-    />
+    <>
+      <img
+        src="/assets/paypill-logo-light.png"
+        alt="PayPill"
+        width={size}
+        height={size}
+        className={`object-contain drop-shadow-lg dark:hidden ${className}`}
+        style={{ width: size, height: 'auto', maxHeight: size }}
+      />
+      <img
+        src="/assets/paypill-logo-dark.png"
+        alt="PayPill"
+        width={size}
+        height={size}
+        className={`hidden object-contain drop-shadow-lg dark:block ${className}`}
+        style={{ width: size, height: 'auto', maxHeight: size }}
+      />
+    </>
   );
 }
 
 // PayPill Wordmark Logo - Uses the provided image file (bold, larger size)
 export function PayPillWordmark({ className = '', size = 80 }: IconProps) {
   return (
-    <img
-      src="/assets/logo.jpg"
-      alt="PayPill"
-      width={size * 4}
-      height={size}
-      className={`object-contain drop-shadow-lg ${className}`}
-      style={{ width: size * 4, height: 'auto', maxHeight: size }}
-    />
+    <>
+      <img
+        src="/assets/paypill-logo-light.png"
+        alt="PayPill"
+        width={size * 4}
+        height={size}
+        className={`object-contain drop-shadow-lg dark:hidden ${className}`}
+        style={{ width: size * 4, height: 'auto', maxHeight: size }}
+      />
+      <img
+        src="/assets/paypill-logo-dark.png"
+        alt="PayPill"
+        width={size * 4}
+        height={size}
+        className={`hidden object-contain drop-shadow-lg dark:block ${className}`}
+        style={{ width: size * 4, height: 'auto', maxHeight: size }}
+      />
+    </>
   );
 }
 
