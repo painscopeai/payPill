@@ -390,7 +390,7 @@ export function LandingPage() {
               <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black leading-[1.05] tracking-tight">
                 <span className="text-pp-teal">CHANGING</span><br />
                 <span className="text-pp-teal">HEALTHCARE</span><br />
-                <span className="text-white drop-shadow-sm">FOREVER</span>
+                <span className="text-green-600 dark:text-green-400 drop-shadow-sm">FOREVER</span>
               </h1>
               
               <p className="text-lg sm:text-xl text-pp-teal italic max-w-lg leading-relaxed">
@@ -419,46 +419,21 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* PayPill Coins Showcase Section */}
-      <section className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-pp-offwhite">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-pp-periwinkle/30 via-pp-offwhite to-pp-sage/20" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-pp-teal/10 via-pp-sage/10 to-pp-purple/10 rounded-full blur-3xl" />
-        
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Left - Image */}
-            <div className="relative">
-              {/* Glow behind image */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] bg-gradient-to-br from-pp-teal/30 via-pp-sage/20 to-pp-purple/20 rounded-full blur-3xl animate-pulse-slow" />
-              </div>
-              
-              {/* Coin Image */}
-              <div className="relative z-10 transform hover:scale-105 transition-transform duration-700">
-                <img 
-                  src="/assets/paypill-coins.jpg" 
-                  alt="PayPill Coins - Healthcare Savings" 
-                  className="w-full max-w-lg mx-auto rounded-3xl shadow-2xl shadow-black/10 border border-border/50"
-                />
-                {/* Subtle reflection effect */}
-                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[80%] h-8 bg-gradient-to-b from-black/5 to-transparent rounded-full blur-xl" />
-              </div>
-            </div>
-            
-            {/* Right - Content */}
-            <div className="text-center lg:text-left space-y-6">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-pp-sage/30 rounded-full border border-pp-sage">
-                <span className="text-lg">💰</span>
-                <span className="text-sm font-semibold text-pp-teal">Real Savings, Real Value</span>
-              </div>
-              
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground leading-tight">
-                Turn Your Healthcare<br />
-                <span className="text-pp-teal">Into Savings</span>
-              </h2>
-            </div>
-          </div>
+      {/* AI healthcare value proposition */}
+      <section className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-pp-offwhite dark:bg-background">
+        <div className="absolute inset-0 bg-gradient-to-br from-pp-periwinkle/30 via-background to-pp-sage/20 dark:from-pp-teal/10 dark:via-background dark:to-background" />
+        <div className="max-w-3xl mx-auto relative z-10 space-y-6 text-left">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground dark:text-green-400 leading-tight">
+            AI that Knows you and your patients.
+          </h2>
+          <p className="text-lg text-foreground">
+            Our apps and web portal provides:
+          </p>
+          <ul className="list-disc pl-6 space-y-3 text-base text-muted-foreground leading-relaxed">
+            <li>Real-time personalized healthcare for individuals.</li>
+            <li>Fixed fee 12-month healthcare contract prices for payors&apos; members.</li>
+            <li>For companies: enhanced and improved health adherence for employees and minimised costs to employers.</li>
+          </ul>
         </div>
       </section>
 
@@ -544,9 +519,9 @@ export function LandingPage() {
       </section>
 
       {/* PayPill Helper App Section */}
-      <section id="helper-app" className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 relative bg-white overflow-hidden">
+      <section id="helper-app" className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 relative bg-background overflow-hidden">
         {/* Subtle background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-pp-teal/5 via-white to-pp-teal/5" />
+        <div className="absolute inset-0 bg-gradient-to-br from-pp-teal/5 via-background to-pp-teal/5" />
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -559,8 +534,9 @@ export function LandingPage() {
                 <span className="text-sm font-semibold text-pp-teal">Mobile & Desktop</span>
               </div>
               
-              <h2 className="text-4xl sm:text-5xl font-bold text-foreground leading-tight">
-                PayPill <span className="text-pp-teal">Helper App</span>
+              <h2 className="text-4xl sm:text-5xl font-bold leading-tight">
+                <span className="text-pp-teal dark:text-green-400">PayPill</span>{' '}
+                <span className="text-pp-teal dark:text-green-400">Helper App</span>
               </h2>
               
               <p className="text-lg text-muted-foreground leading-relaxed">
@@ -596,7 +572,7 @@ export function LandingPage() {
                   { icon: '🤖', title: 'AI Insights', desc: 'Personalized recommendations' },
                   { icon: '💡', title: 'Smart Alerts', desc: 'Never miss important updates' },
                 ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-gray-50">
+                  <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-secondary/80">
                     <span className="text-2xl">{item.icon}</span>
                     <div>
                       <p className="font-medium text-foreground text-sm">{item.title}</p>
@@ -634,7 +610,7 @@ export function LandingPage() {
         
         <div className="max-w-7xl mx-auto relative">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-foreground mb-4">
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-foreground dark:text-green-400 mb-4">
               Everything You Need
             </h2>
             <p className="text-lg text-muted-foreground">
@@ -932,7 +908,7 @@ export function LandingPage() {
             </div>
             
             <p className="mt-8 text-sm text-muted-foreground">
-              PayPill Technologies — Changing Healthcare Forever
+              PayPill Inc. — Changing Healthcare Forever
             </p>
           </div>
         </div>
@@ -958,38 +934,38 @@ export function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 sm:py-16 bg-pp-charcoal text-gray-300 px-4 sm:px-6 lg:px-8 border-t border-pp-charcoal-700">
+      <footer className="py-12 sm:py-16 bg-gray-100 text-black px-4 sm:px-6 lg:px-8 border-t border-gray-300">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-12 mb-12">
             <div className="col-span-2 md:col-span-1">
-              <button onClick={goHome} className="flex items-center gap-3 mb-4" aria-label="Go to home">
+              <button onClick={goHome} className="flex items-center gap-3 mb-4 text-black" aria-label="Go to home">
                 <PayPillLogo size={48} className="sm:w-14" />
-                <span className="text-xl sm:text-2xl font-black text-white tracking-tight">PayPill</span>
+                <span className="text-xl sm:text-2xl font-black text-black tracking-tight">PayPill</span>
               </button>
-              <p className="text-sm leading-relaxed max-w-sm mb-6">
+              <p className="text-sm leading-relaxed max-w-sm mb-6 text-black">
                 Changing healthcare forever through blockchain and AI.
               </p>
             </div>
             
             <div>
-              <h4 className="text-white font-bold mb-4">Company</h4>
-              <ul className="space-y-3 text-sm">
-                <li><button onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-white transition-colors">About Us</button></li>
-                <li><button onClick={() => document.getElementById('team')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-white transition-colors">Team & Advisors</button></li>
-                <li><button onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-white transition-colors">Contact</button></li>
+              <h4 className="text-black font-bold mb-4">Company</h4>
+              <ul className="space-y-3 text-sm text-black">
+                <li><button type="button" onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })} className="text-black hover:text-pp-teal-600 transition-colors">About Us</button></li>
+                <li><button type="button" onClick={() => document.getElementById('team')?.scrollIntoView({ behavior: 'smooth' })} className="text-black hover:text-pp-teal-600 transition-colors">Team & Advisors</button></li>
+                <li><button type="button" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="text-black hover:text-pp-teal-600 transition-colors">Contact</button></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="text-white font-bold mb-4">Product</h4>
-              <ul className="space-y-3 text-sm">
-                <li><button onClick={scrollToFeatures} className="hover:text-white transition-colors">Features</button></li>
+              <h4 className="text-black font-bold mb-4">Product</h4>
+              <ul className="space-y-3 text-sm text-black">
+                <li><button type="button" onClick={scrollToFeatures} className="text-black hover:text-pp-teal-600 transition-colors">Features</button></li>
               </ul>
             </div>
             
           </div>
           
-          <div className="pt-8 border-t border-pp-charcoal-600 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="pt-8 border-t border-gray-300 flex flex-col sm:flex-row justify-between items-center gap-4 text-black">
             <p className="text-sm">© 2026 PayPill. All rights reserved.</p>
             <p className="text-xs">Not a substitute for professional medical advice.</p>
           </div>
