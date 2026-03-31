@@ -910,8 +910,8 @@ export function LandingPage() {
               <svg className="w-6 h-6 text-pp-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              <a href="mailto:investor@paypill.com" className="text-lg font-semibold text-foreground hover:text-pp-teal transition-colors">
-                investor@paypill.com
+              <a href="mailto:info@paypill.com" className="text-lg font-semibold text-foreground hover:text-pp-teal transition-colors">
+                info@paypill.com
               </a>
             </div>
             
@@ -974,7 +974,7 @@ export function LandingPage() {
           </div>
           
           <div className="pt-8 border-t border-pp-charcoal-600 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-sm">© 2024 PayPill. All rights reserved.</p>
+            <p className="text-sm">© 2026 PayPill. All rights reserved.</p>
             <p className="text-xs">Not a substitute for professional medical advice.</p>
           </div>
         </div>
