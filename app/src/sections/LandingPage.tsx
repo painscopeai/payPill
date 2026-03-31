@@ -72,7 +72,6 @@ function StepCard({
   title, 
   description, 
   image, 
-  color, 
   isActive,
   onClick 
 }: { 
@@ -80,10 +79,10 @@ function StepCard({
   title: string; 
   description: string; 
   image: string;
-  color: string;
   isActive: boolean;
   onClick: () => void;
 }) {
+  /* Use solid brand teal for step badges (pp-sage / pp-purple are not in tailwind theme, so they never compiled). */
   return (
     <div 
       onClick={onClick}
@@ -92,7 +91,7 @@ function StepCard({
       }`}
     >
       <div className={`bg-card rounded-3xl overflow-hidden border-2 transition-all duration-300 ${
-        isActive ? `border-${color}-500 shadow-xl shadow-${color}-500/20` : 'border-border hover:border-muted-foreground'
+        isActive ? 'border-pp-teal-500 shadow-xl shadow-pp-teal/20' : 'border-border hover:border-muted-foreground'
       }`}>
         {/* Image */}
         <div className="relative h-40 overflow-hidden bg-gradient-to-b from-secondary to-background">
@@ -105,7 +104,7 @@ function StepCard({
         
         {/* Content */}
         <div className="p-6">
-          <div className={`w-12 h-12 ${color} rounded-xl flex items-center justify-center mb-4 shadow-lg`}>
+          <div className="w-12 h-12 bg-pp-teal rounded-xl flex items-center justify-center mb-4 shadow-lg shrink-0">
             <span className="text-xl font-extrabold text-white">{step}</span>
           </div>
           <h3 className="text-xl font-bold text-foreground mb-2">{title}</h3>
@@ -115,7 +114,7 @@ function StepCard({
       
       {/* Active Indicator */}
       {isActive && (
-        <div className={`absolute -bottom-3 left-1/2 -translate-x-1/2 w-3 h-3 ${color} rounded-full animate-pulse`} />
+        <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-3 h-3 bg-pp-teal rounded-full animate-pulse" />
       )}
     </div>
   );
@@ -264,21 +263,18 @@ export function LandingPage() {
       title: 'Create Profile', 
       desc: 'Sign up and add your basic health information.', 
       image: '/assets/step-profile.png',
-      color: 'bg-pp-teal' 
     },
     { 
       step: '2', 
       title: 'Answer Questions', 
       desc: 'Tell us about your insurance, medications, and health needs.', 
       image: '/assets/step-questions.png',
-      color: 'bg-pp-sage' 
     },
     { 
       step: '3', 
       title: 'Get AI Insights', 
       desc: 'Receive personalized recommendations to save money and find care.', 
       image: '/assets/step-insights.png',
-      color: 'bg-pp-purple' 
     },
   ];
 
@@ -422,18 +418,34 @@ export function LandingPage() {
       {/* AI healthcare value proposition */}
       <section className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-pp-offwhite dark:bg-background">
         <div className="absolute inset-0 bg-gradient-to-br from-pp-periwinkle/30 via-background to-pp-sage/20 dark:from-pp-teal/10 dark:via-background dark:to-background" />
-        <div className="max-w-3xl mx-auto relative z-10 space-y-6 text-left">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground dark:text-green-400 leading-tight">
-            AI that Knows you and your patients.
-          </h2>
-          <p className="text-lg text-foreground">
-            Our apps and web portal provides:
-          </p>
-          <ul className="list-disc pl-6 space-y-3 text-base text-muted-foreground leading-relaxed">
-            <li>Real-time personalized healthcare for individuals.</li>
-            <li>Fixed fee 12-month healthcare contract prices for payors&apos; members.</li>
-            <li>For companies: enhanced and improved health adherence for employees and minimised costs to employers.</li>
-          </ul>
+        <div className="max-w-7xl mx-auto relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left: coin / brand visual */}
+          <div className="relative order-2 lg:order-1">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-[280px] h-[280px] lg:w-[360px] lg:h-[360px] bg-gradient-to-br from-pp-teal/25 via-pp-teal/10 to-transparent rounded-full blur-3xl" />
+            </div>
+            <div className="relative z-10">
+              <img
+                src="/assets/paypill-coins.jpg"
+                alt="PayPill — healthcare value"
+                className="w-full max-w-lg mx-auto rounded-3xl shadow-2xl shadow-black/10 border border-border/50 object-cover"
+              />
+            </div>
+          </div>
+          {/* Right: copy */}
+          <div className="order-1 lg:order-2 space-y-6 text-left">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground dark:text-green-400 leading-tight">
+              AI that Knows you and your patients.
+            </h2>
+            <p className="text-lg text-foreground">
+              Our apps and web portal provides:
+            </p>
+            <ul className="list-disc pl-6 space-y-3 text-base text-muted-foreground leading-relaxed">
+              <li>Real-time personalized healthcare for individuals.</li>
+              <li>Fixed fee 12-month healthcare contract prices for payors&apos; members.</li>
+              <li>For companies: enhanced and improved health adherence for employees and minimised costs to employers.</li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -665,7 +677,6 @@ export function LandingPage() {
                 title={item.title}
                 description={item.desc}
                 image={item.image}
-                color={item.color}
                 isActive={activeStep === index}
                 onClick={() => setActiveStep(index)}
               />
@@ -673,7 +684,7 @@ export function LandingPage() {
           </div>
           
           {/* Connection Line (Desktop) */}
-          <div className="hidden md:block absolute top-[180px] left-[20%] right-[20%] h-0.5 bg-gradient-to-r from-pp-teal via-pp-sage to-pp-purple opacity-30" />
+          <div className="hidden md:block absolute top-[180px] left-[20%] right-[20%] h-0.5 bg-gradient-to-r from-pp-teal via-pp-teal-400 to-pp-teal opacity-40" />
           
           <div className="text-center mt-16">
             <Button
