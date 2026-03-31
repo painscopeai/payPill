@@ -871,7 +871,7 @@ export function LandingPage() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 { name: 'Ray Bailey', role: 'Specialty Healthcare', linkedin: 'https://www.linkedin.com/in/ray-bailey-34011132/' },
-                { name: 'Tayo Dada', role: 'Cybersecurity & Blockchain', linkedin: '' },
+                { name: 'Tayo Dada', role: 'Cybersecurity & Blockchain', linkedin: 'https://www.linkedin.com/in/tayodada/' },
                 { name: 'Cal Evans', role: 'Legal & Regulatory', linkedin: 'https://www.linkedin.com/in/mrcalevans/' },
                 { name: 'André Wright', role: 'Product & Data', linkedin: 'https://www.linkedin.com/in/andrejwright/' },
                 { name: 'Jay Godla', role: 'Global Healthcare & PBMs', linkedin: 'https://www.linkedin.com/in/jay-godla-1889a14/' },
