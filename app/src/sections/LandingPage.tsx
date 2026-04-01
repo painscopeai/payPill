@@ -876,8 +876,8 @@ export function LandingPage() {
             <h3 className="text-xl font-bold text-foreground mb-8 text-center">Founders</h3>
             <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
               {[
-                { name: 'Dr. Wayne C. A. Wright', role: 'Chief Executive Officer and Co-Founder', linkedin: 'https://www.linkedin.com/in/drwaynewright/' },
-                { name: 'Keegan Dohm', role: 'Chief Technical Officer and Co-Founder', linkedin: 'https://www.linkedin.com/in/keegan-dohm/' }
+                { name: 'Dr. Wayne C. A. Wright', role: 'Chief Executive Officer', linkedin: 'https://www.linkedin.com/in/drwaynewright/' },
+                { name: 'Keegan Dohm', role: 'Chief Technical Officer', linkedin: 'https://www.linkedin.com/in/keegan-dohm/' }
               ].map((person, i) => (
                 <div key={i} className="bg-card rounded-2xl p-8 border border-border shadow-lg text-center hover:shadow-xl transition-shadow">
                   <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-pp-teal flex items-center justify-center">
