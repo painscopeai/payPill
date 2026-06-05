@@ -1,0 +1,268 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* PayPill Dashboard Color Palette - From Design Reference */
+    
+    /* Primary: Teal from dashboard */
+    --primary: 174 35% 50%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Background: Clean white */
+    --background: 0 0% 100%;
+    --foreground: 220 20% 12%;
+    
+    /* Card: White with subtle shadow */
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 12%;
+    
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 12%;
+    
+    /* Secondary: Light gray for backgrounds */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 20% 12%;
+    
+    /* Muted: Light gray */
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 10% 45%;
+    
+    /* Accent: Light teal */
+    --accent: 174 30% 70%;
+    --accent-foreground: 220 20% 12%;
+    
+    /* Destructive */
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Borders - Very light gray */
+    --border: 220 13% 90%;
+    --input: 220 13% 90%;
+    --ring: 174 35% 50%;
+    --radius: 0.75rem;
+    
+    /* Brand Colors - Exact from dashboard */
+    --pp-teal: 174 35% 50%;
+    --pp-teal-light: 174 30% 70%;
+    --pp-teal-dark: 174 40% 40%;
+    --pp-white: 0 0% 100%;
+    --pp-gray-100: 220 14% 96%;
+    --pp-gray-200: 220 13% 90%;
+    --pp-gray-300: 220 10% 75%;
+    --pp-gray-400: 220 10% 55%;
+    --pp-gray-500: 220 10% 45%;
+    --pp-gray-600: 220 15% 35%;
+    --pp-gray-700: 220 20% 25%;
+    --pp-gray-800: 220 20% 15%;
+    --pp-gray-900: 220 25% 10%;
+    
+    /* Status Colors */
+    --success: 150 45% 50%;
+    --success-foreground: 0 0% 100%;
+    --warning: 40 85% 55%;
+    --warning-foreground: 0 0% 100%;
+    --info: 174 35% 50%;
+    --info-foreground: 0 0% 100%;
+    
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 20% 12%;
+    --sidebar-primary: 174 35% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 96%;
+    --sidebar-accent-foreground: 220 20% 12%;
+    --sidebar-border: 220 13% 90%;
+    --sidebar-ring: 174 35% 50%;
+  }
+
+  .dark {
+    /* Dark Mode - Adjusted */
+    --primary: 174 35% 55%;
+    --primary-foreground: 0 0% 100%;
+    
+    --background: 220 18% 10%;
+    --foreground: 0 0% 95%;
+    
+    --card: 220 15% 14%;
+    --card-foreground: 0 0% 95%;
+    
+    --popover: 220 15% 14%;
+    --popover-foreground: 0 0% 95%;
+    
+    --secondary: 220 15% 20%;
+    --secondary-foreground: 0 0% 95%;
+    
+    --muted: 220 15% 20%;
+    --muted-foreground: 220 10% 60%;
+    
+    --accent: 174 30% 40%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 220 15% 22%;
+    --input: 220 15% 22%;
+    --ring: 174 35% 55%;
+    
+    --pp-teal: 174 35% 55%;
+    --pp-teal-light: 174 30% 45%;
+    --pp-teal-dark: 174 40% 45%;
+    
+    --sidebar-background: 220 15% 10%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 174 35% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 18%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 220 15% 22%;
+    --sidebar-ring: 174 35% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    /* Avoid muddy color blending while toggling light/dark */
+    transition: none;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    transition: none;
+  }
+}
+
+@layer utilities {
+  /* Dashboard Card Style */
+  .dashboard-card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-100;
+  }
+  
+  .dashboard-card-hover {
+    @apply dashboard-card transition-all duration-200 hover:shadow-md;
+  }
+  
+  /* Teal Button Style - Dashboard */
+  .btn-teal {
+    @apply bg-[hsl(174,35%,50%)] hover:bg-[hsl(174,40%,45%)] text-white font-medium rounded-lg px-5 py-2.5 transition-all duration-200;
+  }
+  
+  .btn-outline-teal {
+    @apply bg-transparent hover:bg-[hsl(174,35%,95%)] text-[hsl(174,35%,50%)] border border-[hsl(174,35%,50%)] rounded-lg px-5 py-2.5 transition-all duration-200;
+  }
+  
+  /* Text Colors */
+  .text-teal {
+    @apply text-[hsl(174,35%,50%)];
+  }
+  
+  .text-teal-dark {
+    @apply text-[hsl(174,40%,40%)];
+  }
+  
+  /* Background Colors */
+  .bg-teal {
+    @apply bg-[hsl(174,35%,50%)];
+  }
+  
+  .bg-teal-light {
+    @apply bg-[hsl(174,30%,95%)];
+  }
+  
+  /* Section Backgrounds */
+  .section-white {
+    @apply bg-white;
+  }
+  
+  .section-gray {
+    @apply bg-gray-50;
+  }
+  
+  /* Headline Style */
+  .headline-xl {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight;
+  }
+  
+  .headline-lg {
+    @apply text-3xl sm:text-4xl font-bold tracking-tight leading-tight;
+  }
+  
+  /* Body Text */
+  .body-lg {
+    @apply text-lg leading-relaxed;
+  }
+  
+  /* Animation Utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-down {
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--pp-gray-100));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--pp-gray-300));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--pp-gray-400));
+}
+
+/* Focus Ring */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  @apply outline-none ring-2 ring-[hsl(174,35%,50%)] ring-offset-2;
+}
