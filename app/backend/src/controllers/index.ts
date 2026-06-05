@@ -1,9 +1,0 @@
-export * as authController from './authController';
-export * as userController from './userController';
-export * as providerController from './providerController';
-export * as appointmentController from './appointmentController';
-export * as pharmacyController from './pharmacyController';
-export * as messageController from './messageController';
-export * as notificationController from './notificationController';
-export * as medicationController from './medicationController';
-export * as aiController from './aiController';
