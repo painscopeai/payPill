@@ -375,8 +375,8 @@ export function LandingPage() {
               {/* Video Aspect Ratio Container */}
               <div className="relative aspect-video">
                 <iframe
-                  src="https://www.youtube.com/embed/Nliv5xU1za0?rel=0&modestbranding=1"
-                  title="PayPill Dashboard Demo"
+                  src="https://www.youtube.com/embed/UEFvvaLRCPU?rel=0&modestbranding=1"
+                  title="PayPill - Changing Healthcare Forever"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   className="absolute inset-0 w-full h-full"
@@ -390,8 +390,8 @@ export function LandingPage() {
                     <PayPillLogo size={24} />
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground">PayPill Dashboard Tour</p>
-                    <p className="text-sm text-muted-foreground">2:34 • AI-Powered Healthcare</p>
+                    <p className="font-semibold text-foreground">PayPill - Changing Healthcare Forever</p>
+                    <p className="text-sm text-muted-foreground">2:08 • AI-Powered Healthcare</p>
                   </div>
                 </div>
                 
